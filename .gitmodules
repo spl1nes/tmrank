@@ -1,0 +1,6 @@
+[submodule "phpOMS"]
+	path = phpOMS
+	url = https://github.com/Karaka-Management/phpOMS.git
+[submodule "jsOMS"]
+	path = jsOMS
+	url = https://github.com/Karaka-Management/jsOMS.git

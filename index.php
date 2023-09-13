@@ -1,6 +1,6 @@
 <?php
 
-include_once __DIR__ . '/../../phpOMS/Autoloader.php';
+include_once __DIR__ . '/phpOMS/Autoloader.php';
 include_once __DIR__ . '/db.php';
 
 use phpOMS\Message\Http\HttpRequest;
@@ -15,14 +15,14 @@ if ($page !== 'maps' && $page !== 'user') {
 ?>
 <!DOCTYPE html>
     <head>
-        <link rel="stylesheet" href="/Sandbox/tm_pack_ranking/styles.css">
+        <link rel="stylesheet" href="/styles.css">
         <script src="/jsOMS/Utils/oLib.js?v=1.0.0"></script>
     </head>
     <body>
         <header>
             <div class="floater">
                 <a id="toplogo" href="/">
-                    <img alt="Logo" src="/Sandbox/tm_pack_ranking/tpl/logo.png" width="40px">
+                    <img alt="Logo" src="/tpl/logo.png" width="40px">
                     <span>Jingga</span>
                 </a>
             </div>

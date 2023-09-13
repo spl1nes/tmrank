@@ -1,5 +1,5 @@
 <?php
-include_once __DIR__ . '/../../phpOMS/Autoloader.php';
+include_once __DIR__ . '/phpOMS/Autoloader.php';
 
 use phpOMS\DataStorage\Database\Mapper\DataMapperFactory;
 use phpOMS\DataStorage\Database\Connection\SQLiteConnection;
