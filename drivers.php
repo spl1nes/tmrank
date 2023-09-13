@@ -1,6 +1,6 @@
 <?php
 
-include __DIR__ . '/../../phpOMS/Autoloader.php';
+include __DIR__ . '/phpOMS/Autoloader.php';
 include __DIR__ . '/db.php';
 include __DIR__ . '/config.php';
 
@@ -83,6 +83,50 @@ foreach ($maps as $map) {
                 $driver->uid = $name['accountId'];
 
                 DriverMapper::create()->execute($driver);
+            }
+
+            $finish = FinishMapper::get()
+                ->where('map', $map->nid)
+                ->where('driver', $driver->uid)
+                ->execute();
+
+            if ($finish->id === 0) {
+                $finish = new Finish();
+                $finish->driver = $driver->uid;
+                $finish->map = $map->nid;
+                $finish->finish_time = (int) $name['score'];
+
+                if ($finish->finish_time < $map->at_time) {
+                    $finish->finish_score = $map->at_score;
+                } elseif ($finish->finish_time < $map->gold_time) {
+                    $finish->finish_score = $map->gold_score;
+                } elseif ($finish->finish_time < $map->silver_time) {
+                    $finish->finish_score = $map->silver_score;
+                } elseif ($finish->finish_time < $map->bronze_time) {
+                    $finish->finish_score = $map->bronze_score;
+                } else {
+                    $finish->finish_score = $map->finish_score;
+                }
+
+                FinishMapper::create()->execute($finish);
+            } elseif ($finish->finish_time !== ((int) $name['score'])
+                && ((int) $name['score']) > 0
+            ) {
+                $finish->finish_time = (int) $name['score'];
+
+                if ($finish->finish_time < $map->at_time) {
+                    $finish->finish_score = $map->at_score;
+                } elseif ($finish->finish_time < $map->gold_time) {
+                    $finish->finish_score = $map->gold_score;
+                } elseif ($finish->finish_time < $map->silver_time) {
+                    $finish->finish_score = $map->silver_score;
+                } elseif ($finish->finish_time < $map->bronze_time) {
+                    $finish->finish_score = $map->bronze_score;
+                } else {
+                    $finish->finish_score = $map->finish_score;
+                }
+
+                FinishMapper::update()->execute($finish);
             }
         }
 
