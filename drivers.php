@@ -44,6 +44,10 @@ foreach ($maps as $map) {
     $lastMapId = 0;
     $names = [];
 
+    $oldTop = '';
+
+    echo "MAP: ", $map->uid, "\n";
+
     do {
         $nameRequest = new HttpRequest(new HttpUri('https://live-services.trackmania.nadeo.live/api/token/leaderboard/group/Personal_Best/map/' . $map->uid . '/top?length=50&onlyWorld=true&offset=' . $lastMapId));
         $nameRequest->header->set('Content-Type', 'application/json');
@@ -67,12 +71,17 @@ foreach ($maps as $map) {
             $nameResponse = Rest::request($nameRequest);
 
             if ($nameResponse->header->status !== 200) {
-                \sleep(1);
+                ++$lastMapId;
 
                 continue;
             }
         }
 
+        if (($tmp = \sha1(\serialize($names['tops'][0]['top'] ?? []))) === $oldTop) {
+            break;
+        }
+
+        $oldTop = $tmp;
         $names = $nameResponse->data;
 
         foreach (($names['tops'][0]['top'] ?? []) as $name) {
