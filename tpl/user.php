@@ -59,7 +59,7 @@ $missing = $query->execute()->fetchAll();
             <tr>
                 <th>Name</th>
                 <th>ID</th>
-                <th>Difficulty</th>
+                <th>Points</th>
                 <th>AT</th>
                 <th>Fin</th>
             </tr>
@@ -99,7 +99,7 @@ $missing = $query->execute()->fetchAll();
             <tr>
                 <th>Name</th>
                 <th>ID</th>
-                <th>Difficulty</th>
+                <th>Points</th>
                 <th>AT</th>
                 <th>Fin</th>
             </tr>

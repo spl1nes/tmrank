@@ -58,7 +58,7 @@ $scores = $query->execute()->fetchAll();
                 <th>Rank</th>
                 <th>Name</th>
                 <th>Points</th>
-                <th>Fin</th>
+                <th>Fins</th>
                 <th>AT</th>
                 <th>Gold</th>
                 <th>Silver</th>

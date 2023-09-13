@@ -15,6 +15,7 @@ if ($page !== 'maps' && $page !== 'user') {
 ?>
 <!DOCTYPE html>
     <head>
+        <link rel="shortcut icon" href="/tpl/favicon.ico" type="image/x-icon">
         <link rel="stylesheet" href="/styles.css">
         <script src="/jsOMS/Utils/oLib.js?v=1.0.0"></script>
     </head>

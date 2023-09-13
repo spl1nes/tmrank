@@ -34,7 +34,7 @@ $maps = $query->execute()->fetchAll();
             <tr>
                 <th>Name</th>
                 <th>ID</th>
-                <th>Difficulty</th>
+                <th>Points</th>
                 <th>AT</th>
                 <th>Fins</th>
             </tr>
