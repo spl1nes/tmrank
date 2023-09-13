@@ -49,6 +49,14 @@ table {
     width: 100%;
 }
 
+.floater table a {
+    color: inherit;
+}
+
+.floater table a:hover {
+    color: inherit;
+}
+
 th {
     background-color: #3498db;
     color: #fff;
@@ -94,6 +102,7 @@ input[type="submit"], a.button {
 
 input[type="submit"]:hover, a.button:hover {
     background-color: #46acf0;
+    color: #fff;
 }
 
 select {
@@ -144,12 +153,12 @@ header a {
     margin-left: 1rem;
 }
 
-#bottomnav a {
+a {
     color: #3498db;
     text-decoration: none;
 }
 
-#bottomnav a:hover {
+a:hover {
     color: #46acf0;
 }
 

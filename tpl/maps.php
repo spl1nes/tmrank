@@ -50,7 +50,7 @@ $maps = $query->execute()->fetchAll();
             ?>
             <tr>
                 <td>
-                    <?= \preg_replace('/(\$...)/', '', \str_replace(['$o', '$i', '$w', '$n', '$t', '$s', '$g', '$z'], '', \htmlspecialchars($map['map_name']))); ?>
+                    <a href="https://trackmania.io/#/rooms/leaderboard/<?= \htmlspecialchars($map['map_uid']); ?>"><?= \preg_replace('/(\$...)/', '', \str_replace(['$o', '$i', '$w', '$n', '$t', '$s', '$g', '$z'], '', \htmlspecialchars($map['map_name']))); ?></a>
                     <div class="img-container"><img loading="lazy" width="400px" src="<?= $map['map_img']; ?>"></div>
                 </td>
                 <td><?= \htmlspecialchars($map['map_uid']); ?></td>
