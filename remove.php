@@ -7,6 +7,13 @@ include __DIR__ . '/config.php';
 // load csv
 $row = 0;
 if (($handle = \fopen(__DIR__ . '/remove.csv', 'r')) !== false) {
+
+    $temp = MapTypeMapper::getAll()->execute();
+    $types = [];
+    foreach ($temp as $t) {
+        $types[$t->name] = $t;
+    }
+    
     while (($data = \fgetcsv($handle, 4096, ',')) !== false) {
         ++$row;
 
@@ -14,7 +21,11 @@ if (($handle = \fopen(__DIR__ . '/remove.csv', 'r')) !== false) {
             continue;
         }
 
-        $rel = MapTypeRelMapper::get()->where('uid', $data[0])->execute();
+        if (!isset($types[$data[1]])) {
+            continue;
+        }
+
+        $rel = MapTypeRelMapper::get()->where('uid', $data[0], $types[$data[1]]->id)->execute();
         if ($rel->id !== 0) {
             MapTypeRelMapper::delete()->execute($rel);
         }
