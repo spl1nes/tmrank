@@ -118,8 +118,8 @@ foreach ($maps as $map) {
                 }
 
                 FinishMapper::create()->execute($finish);
-            } elseif ($finish->finish_time !== ((int) $name['score'])
-                && ((int) $name['score']) > 0
+            } elseif (/*$finish->finish_time !== ((int) $name['score'])
+                && */((int) $name['score']) > 0
             ) {
                 $finish->finish_time = (int) $name['score'];
 
