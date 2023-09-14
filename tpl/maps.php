@@ -90,8 +90,8 @@ foreach ($temps as $temp) {
                 </td>
                 <td><?= \htmlspecialchars($map['map_uid']); ?></td>
                 <td><?= $map['map_finish_score']; ?>/<?= $map['map_bronze_score']; ?>/<?= $map['map_silver_score']; ?>/<?= $map['map_gold_score']; ?>/<?= $map['map_at_score']; ?></td>
-                <td><?= \sprintf("%02d:%02d:%02d:%02d", $days, $hours, $minutes, $seconds); ?></td>
-                <td><?= \sprintf("%02d:%02d:%02d:%02d", $wdays, $whours, $wminutes, $wseconds); ?></td>
+                <td><?= \sprintf("%02d:%02d:%02d", $hours, $minutes, $seconds); ?></td>
+                <td><?= \sprintf("%02d:%02d:%02d", $whours, $wminutes, $wseconds); ?></td>
                 <td><?= \htmlspecialchars($wrs[$map['map_uid']]['driver_name']); ?></td>
                 <td><?= $map['fins']; ?>
             <?php endforeach; ?>
