@@ -1,5 +1,7 @@
 #!/bin/bash
 
+sudo -u www-data git pull /var/www/html/tmrank
+
 echo "#################################################"
 echo "# Remove"
 echo "#################################################"

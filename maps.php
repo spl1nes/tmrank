@@ -96,6 +96,12 @@ if (($handle = \fopen(__DIR__ . '/maps.csv', 'r')) !== false) {
                 }
             }
 
+	    if (empty($mapInfoResponse->data)) {
+                echo "Invalid map id " . $map->uid . "\n";
+
+                continue;
+            }
+
             $map->nid = $mapInfoResponse->data[0]['mapId'];
             $map->name = $mapInfoResponse->data[0]['name'];
             $map->img = $mapInfoResponse->data[0]['thumbnailUrl'];

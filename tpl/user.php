@@ -102,7 +102,6 @@ $user = DriverMapper::get()->where('uid', $uid)->execute();
                 <th>ID</th>
                 <th>Points</th>
                 <th>AT</th>
-                <th>Fin</th>
             </tr>
         </thead>
         <tbody>
@@ -122,7 +121,6 @@ $user = DriverMapper::get()->where('uid', $uid)->execute();
                 <td><?= \htmlspecialchars($map['map_uid']); ?></td>
                 <td><?= $map['map_finish_score']; ?>/<?= $map['map_bronze_score']; ?>/<?= $map['map_silver_score']; ?>/<?= $map['map_gold_score']; ?>/<?= $map['map_at_score']; ?></td>
                 <td><?= \sprintf("%02d:%02d:%02d:%02d", $days, $hours, $minutes, $seconds); ?></td>
-                <td></td>
             <?php endforeach; ?>
     </table>
 </div>
