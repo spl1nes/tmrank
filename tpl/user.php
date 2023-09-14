@@ -14,7 +14,7 @@ if (\preg_match('/[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}/'
 
 $query = new Builder($db);
 $query->raw(
-    'SELECT *, finish.finish_finish_time AS fins
+    'SELECT *, finish.finish_finish_time AS fins, finish.finish_finish_score AS score
     FROM map
     LEFT JOIN finish ON map.map_nid = finish.finish_map
     LEFT JOIN type_map_rel ON map.map_uid = type_map_rel.type_map_rel_map
@@ -86,7 +86,7 @@ $user = DriverMapper::get()->where('uid', $uid)->execute();
                     <div class="img-container"><img loading="lazy" width="400px" src="<?= $map['map_img']; ?>"></div>
                 </td>
                 <td><?= \htmlspecialchars($map['map_uid']); ?></td>
-                <td><?= $map['map_finish_score']; ?>/<?= $map['map_bronze_score']; ?>/<?= $map['map_silver_score']; ?>/<?= $map['map_gold_score']; ?>/<?= $map['map_at_score']; ?></td>
+                <td><?= ($map['score'] === $map['map_finish_score'] ? '<strong>' : '') . $map['map_finish_score'] . ($map['score'] === $map['map_finish_score'] ? '</strong>' : ''); ?></td>
                 <td><?= \sprintf("%02d:%02d:%02d:%02d", $days, $hours, $minutes, $seconds); ?></td>
                 <td><?= \sprintf("%02d:%02d:%02d:%02d", $fdays, $fhours, $fminutes, $fseconds); ?></td>
             <?php endforeach; ?>
