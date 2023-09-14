@@ -29,7 +29,7 @@ LEFT JOIN (
 ) AS subquery ON map.map_nid = subquery.finish_map
 LEFT JOIN finish ON map.map_nid = finish.finish_map AND subquery.min_finish_time = finish.finish_finish_time
 LEFT JOIN driver ON finish.finish_driver = driver.driver_uid
-WHERE type_map_rel.type_map_rel_type = 1
+WHERE type_map_rel.type_map_rel_type = ' . ((int) $current_type) . '
 GROUP BY map.map_uid, driver.driver_name;'
 );
 $temps = $query->execute()->fetchAll();
