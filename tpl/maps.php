@@ -54,7 +54,7 @@ $maps = $query->execute()->fetchAll();
                     <div class="img-container"><img loading="lazy" width="400px" src="<?= $map['map_img']; ?>"></div>
                 </td>
                 <td><?= \htmlspecialchars($map['map_uid']); ?></td>
-                <td><?= $map['map_finish_score']; ?></td>
+                <td><?= $map['map_finish_score']; ?>/<?= $map['map_bronze_score']; ?>/<?= $map['map_silver_score']; ?>/<?= $map['map_gold_score']; ?>/<?= $map['map_at_score']; ?></td>
                 <td><?= \sprintf("%02d:%02d:%02d:%02d", $days, $hours, $minutes, $seconds); ?></td>
                 <td><?= $map['fins']; ?>
             <?php endforeach; ?>

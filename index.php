@@ -37,6 +37,7 @@ if ($page !== 'maps' && $page !== 'user') {
         <footer>
             <div class="floater">
                 <ul id="bottomnav">
+                    <li><a href="https://www.paypal.com/donate/?hosted_button_id=UF37LLDV3Z4DE">Donate</a></li>
                     <li><a href="https://jingga.app/terms">Terms</a></li>
                     <li><a href="https://jingga.app/privacy">Privacy</a></li>
                     <li><a href="https://jingga.app/imprint">Imprint</a></li>

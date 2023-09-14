@@ -13,7 +13,7 @@ if (($handle = \fopen(__DIR__ . '/remove.csv', 'r')) !== false) {
     foreach ($temp as $t) {
         $types[$t->name] = $t;
     }
-    
+
     while (($data = \fgetcsv($handle, 4096, ',')) !== false) {
         ++$row;
 
@@ -25,12 +25,20 @@ if (($handle = \fopen(__DIR__ . '/remove.csv', 'r')) !== false) {
             continue;
         }
 
-        $rel = MapTypeRelMapper::get()->where('uid', $data[0], $types[$data[1]]->id)->execute();
+        $rel = MapTypeRelMapper::get()
+	    ->where('map', $data[0])
+	    ->where('type', $types[$data[1]]->id)
+	    ->execute();
+
         if ($rel->id !== 0) {
             MapTypeRelMapper::delete()->execute($rel);
         }
 
-        $rel = MapTypeRelMapper::get()->where('uid', $data[0])->execute();
+        $rel = MapTypeRelMapper::get()
+	    ->where('map', $data[0])
+	    ->limit(1)
+	    ->execute();
+
         if ($rel->id === 0) {
             $map = MapMapper::get()->where('uid', $data[0])->execute();
             MapMapper::delete()->execute($map);
