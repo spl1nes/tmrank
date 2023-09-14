@@ -67,6 +67,7 @@ foreach ($temps as $temp) {
         <tbody>
             <?php
             foreach ($maps as $map) :
+                $ms = (int) ($map['map_at_time'] % 1000);
                 $map['map_at_time'] = (int) ($map['map_at_time'] / 1000);
                 $days = (int) \floor($map['map_at_time'] / 86400);
                 $hours = (int) \floor(($map['map_at_time'] % 86400) / 3600);
@@ -75,6 +76,7 @@ foreach ($temps as $temp) {
         
                 $map['wr'] = $wrs[$map['map_uid']]['wr'];
 
+                $wms = (int) ($map['wr'] % 1000);
                 $map['wr'] = (int) ($map['wr'] / 1000);
                 $wdays = (int) \floor($map['wr'] / 86400);
                 $whours = (int) \floor(($map['wr'] % 86400) / 3600);
@@ -90,8 +92,8 @@ foreach ($temps as $temp) {
                 </td>
                 <td><?= \htmlspecialchars($map['map_uid']); ?></td>
                 <td><?= $map['map_finish_score']; ?>/<?= $map['map_bronze_score']; ?>/<?= $map['map_silver_score']; ?>/<?= $map['map_gold_score']; ?>/<?= $map['map_at_score']; ?></td>
-                <td><?= \sprintf("%02d:%02d:%02d", $hours, $minutes, $seconds); ?></td>
-                <td><?= \sprintf("%02d:%02d:%02d", $whours, $wminutes, $wseconds); ?></td>
+                <td><?= \sprintf("%02d:%02d:%02d.%03d", $hours, $minutes, $seconds, $ms); ?></td>
+                <td><?= \sprintf("%02d:%02d:%02d.%03d", $whours, $wminutes, $wseconds, $wms); ?></td>
                 <td><?= \htmlspecialchars($wrs[$map['map_uid']]['driver_name']); ?></td>
                 <td><?= $map['fins']; ?>
             <?php endforeach; ?>

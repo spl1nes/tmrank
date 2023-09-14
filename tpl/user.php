@@ -68,12 +68,14 @@ $user = DriverMapper::get()->where('uid', $uid)->execute();
         <tbody>
             <?php
             foreach ($maps as $map) :
+                $ms = (int) ($map['map_at_time'] % 1000);
                 $map['map_at_time'] = (int) ($map['map_at_time'] / 1000);
                 $days = (int) \floor($map['map_at_time'] / 86400);
                 $hours = (int) \floor(($map['map_at_time'] % 86400) / 3600);
                 $minutes = (int) \floor(($map['map_at_time'] % 3600) / 60);
                 $seconds = $map['map_at_time'] % 60;
 
+                $fms = (int) ($map['fins'] % 1000);
                 $map['fins'] = (int) ($map['fins'] / 1000);
                 $fdays = (int) \floor($map['fins'] / 86400);
                 $fhours = (int) \floor(($map['fins'] % 86400) / 3600);
@@ -87,8 +89,8 @@ $user = DriverMapper::get()->where('uid', $uid)->execute();
                 </td>
                 <td><?= \htmlspecialchars($map['map_uid']); ?></td>
                 <td><?= ($map['score'] === $map['map_finish_score'] ? '<strong>' : '') . $map['map_finish_score'] . ($map['score'] === $map['map_finish_score'] ? '</strong>' : ''); ?>/<?= ($map['score'] === $map['map_bronze_score'] ? '<strong>' : '') . $map['map_bronze_score'] . ($map['score'] === $map['map_bronze_score'] ? '</strong>' : ''); ?>/<?= ($map['score'] === $map['map_silver_score'] ? '<strong>' : '') . $map['map_silver_score'] . ($map['score'] === $map['map_silver_score'] ? '</strong>' : ''); ?>/<?= ($map['score'] === $map['map_gold_score'] ? '<strong>' : '') . $map['map_gold_score'] . ($map['score'] === $map['map_gold_score'] ? '</strong>' : ''); ?>/<?= ($map['score'] === $map['map_at_score'] ? '<strong>' : '') . $map['map_at_score'] . ($map['score'] === $map['map_at_score'] ? '</strong>' : ''); ?></td>
-                <td><?= \sprintf("%02d:%02d:%02d", $hours, $minutes, $seconds); ?></td>
-                <td><?= \sprintf("%02d:%02d:%02d", $fhours, $fminutes, $fseconds); ?></td>
+                <td><?= \sprintf("%02d:%02d:%02d.%03d", $hours, $minutes, $seconds, $ms); ?></td>
+                <td><?= \sprintf("%02d:%02d:%02d.%03d", $fhours, $fminutes, $fseconds, $fms); ?></td>
             <?php endforeach; ?>
     </table>
 </div>
@@ -107,6 +109,7 @@ $user = DriverMapper::get()->where('uid', $uid)->execute();
         <tbody>
             <?php
             foreach ($missing as $map) :
+                $ms = (int) ($map['map_at_time'] % 1000);
                 $map['map_at_time'] = (int) ($map['map_at_time'] / 1000);
                 $days = (int) \floor($map['map_at_time'] / 86400);
                 $hours = (int) \floor(($map['map_at_time'] % 86400) / 3600);
@@ -120,7 +123,7 @@ $user = DriverMapper::get()->where('uid', $uid)->execute();
                 </td>
                 <td><?= \htmlspecialchars($map['map_uid']); ?></td>
                 <td><?= $map['map_finish_score']; ?>/<?= $map['map_bronze_score']; ?>/<?= $map['map_silver_score']; ?>/<?= $map['map_gold_score']; ?>/<?= $map['map_at_score']; ?></td>
-                <td><?= \sprintf("%02d:%02d:%02d", $hours, $minutes, $seconds); ?></td>
+                <td><?= \sprintf("%02d:%02d:%02d.%03d", $hours, $minutes, $seconds, $ms); ?></td>
             <?php endforeach; ?>
     </table>
 </div>
