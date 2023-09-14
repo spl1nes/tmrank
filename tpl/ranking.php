@@ -111,7 +111,7 @@ $scores = $query->execute()->fetchAll();
 </div>
 
 <div class="floater center">
-    <a class="button" href="?type=<?= $current_type ?>&offset=<?= \max(0, $offset - $limit); ?>"><</a>
-    <a class="button" href="?type=<?= $current_type ?>&offset=<?= $offset + $limit; ?>">></a>
+    <a class="button" href="?type=<?= $current_type ?>&offset=<?= \max(0, $offset - $limit); ?>&order=<?= $order; ?>"><</a>
+    <a class="button" href="?type=<?= $current_type ?>&offset=<?= $offset + $limit; ?>&order=<?= $order; ?>">></a>
 </div>
 
