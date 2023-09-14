@@ -50,6 +50,7 @@ table {
 }
 
 .floater table a {
+    text-decoration: underline dotted;
     color: inherit;
 }
 
@@ -81,15 +82,15 @@ td {
 
 tr:hover {
     background-color: #46acf0;
+    color: #fff;
+}
+
+tr:hover a, tr:hover td a {
+    color: #fff;
 }
 
 tr:hover td {
     color: #fff;
-}
-
-table a {
-    text-decoration: none;
-    color: inherit;
 }
 
 input[type="submit"], a.button {
