@@ -1,8 +1,8 @@
 <?php
 
 include __DIR__ . '/phpOMS/Autoloader.php';
-include __DIR__ . '/db.php';
-include __DIR__ . '/config.php';
+include __DIR__ . '/../db.php';
+include __DIR__ . '/../config.php';
 
 use phpOMS\Message\Http\HttpRequest;
 use phpOMS\Message\Http\Rest;
@@ -40,7 +40,7 @@ foreach ($temp as $t) {
 
 // load csv
 $row = 0;
-if (($handle = \fopen(__DIR__ . '/maps.csv', 'r')) !== false) {
+if (($handle = \fopen(__DIR__ . '/../maps.csv', 'r')) !== false) {
     while (($data = \fgetcsv($handle, 4096, ',')) !== false) {
         ++$row;
 

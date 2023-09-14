@@ -1,8 +1,8 @@
 <?php
 
 include __DIR__ . '/phpOMS/Autoloader.php';
-include __DIR__ . '/db.php';
-include __DIR__ . '/config.php';
+include __DIR__ . '/../db.php';
+include __DIR__ . '/../config.php';
 
 use phpOMS\Message\Http\HttpRequest;
 use phpOMS\Message\Http\Rest;

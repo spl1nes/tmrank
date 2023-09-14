@@ -51,3 +51,27 @@ if ($order !== 'finish' && $order !== 'at' && $order !== 'gold' && $order !== 's
             </div>
         </footer>
 </html>
+
+<script>
+    jsOMS.ready(function ()
+    {
+        const type_selector = document.getElementById('type_selector');
+        if (type_selector !== null) {
+            type_selector.addEventListener('change', function() {
+                const url = new URL(window.location.href);
+                url.searchParams.set('type', type_selector.value);
+                window.location.href = url.toString();
+            });
+        }
+
+        const sort = document.querySelectorAll('table thead input[name="sort"]');
+        let length = sort.length;
+        for (let i = 0; i < length; ++i) {
+            sort[i].addEventListener('change', function() {
+                const url = new URL(window.location.href);
+                url.searchParams.set('order', this.value);
+                window.location.href = url.toString();
+            });
+        }
+    });
+</script>

@@ -43,7 +43,7 @@ $missing = $query->execute()->fetchAll();
 $user = DriverMapper::get()->where('uid', $uid)->execute();
 ?>
 <div id="ranking_top" class="floater">
-    <select id="map_type_selector">
+    <select id="type_selector">
         <option disabled>Select</option>
         <?php foreach ($types as $type) : ?>
         <option value="<?= $type->id; ?>"<?= $current_type === $type->id ? ' selected' : ''; ?>><?= \htmlspecialchars($type->name); ?></option>
@@ -124,17 +124,3 @@ $user = DriverMapper::get()->where('uid', $uid)->execute();
             <?php endforeach; ?>
     </table>
 </div>
-
-<script>
-    jsOMS.ready(function ()
-    {
-        const map_type_selector = document.getElementById('map_type_selector');
-        if (map_type_selector !== null) {
-            map_type_selector.addEventListener('change', function() {
-                const url = new URL(window.location.href);
-                url.searchParams.set('type', map_type_selector.value);
-                window.location.href = url.toString();
-            });
-        }
-    });
-</script>

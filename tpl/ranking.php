@@ -52,13 +52,12 @@ $query->raw(
     GROUP BY driver.driver_uid
     ORDER BY ' . $orderSql . '
     LIMIT ' . $limit . '
-    OFFSET ' . $offset . '
-    ;'
+    OFFSET ' . $offset . ';'
 );
 $scores = $query->execute()->fetchAll();
 ?>
 <div id="ranking_top" class="floater">
-    <select id="ranking_type_selector">
+    <select id="type_selector">
         <option disabled>Select</option>
         <?php foreach ($types as $type) : ?>
         <option value="<?= $type->id; ?>"<?= $current_type === $type->id ? ' selected' : ''; ?>><?= \htmlspecialchars($type->name); ?></option>
@@ -116,26 +115,3 @@ $scores = $query->execute()->fetchAll();
     <a class="button" href="?type=<?= $current_type ?>&offset=<?= $offset + $limit; ?>">></a>
 </div>
 
-<script>
-    jsOMS.ready(function ()
-    {
-        const ranking_type_selector = document.getElementById('ranking_type_selector');
-        if (ranking_type_selector !== null) {
-            ranking_type_selector.addEventListener('change', function() {
-                const url = new URL(window.location.href);
-                url.searchParams.set('type', ranking_type_selector.value);
-                window.location.href = url.toString();
-            });
-        }
-
-        const sort = document.querySelectorAll('table thead input[name="sort"]');
-        let length = sort.length;
-        for (let i = 0; i < length; ++i) {
-            sort[i].addEventListener('change', function() {
-                const url = new URL(window.location.href);
-                url.searchParams.set('order', this.value);
-                window.location.href = url.toString();
-            });
-        }
-    });
-</script>

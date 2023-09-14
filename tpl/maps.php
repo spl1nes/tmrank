@@ -20,17 +20,17 @@ $maps = $query->execute()->fetchAll();
 $query = new Builder($db);
 $query->raw(
     'SELECT map.map_uid, driver.driver_name, IFNULL(MIN(subquery.min_finish_time), 0) AS wr
-FROM map
-LEFT JOIN type_map_rel ON map.map_uid = type_map_rel.type_map_rel_map
-LEFT JOIN (
-    SELECT finish_map, MIN(finish_finish_time) AS min_finish_time
-    FROM finish
-    GROUP BY finish_map
-) AS subquery ON map.map_nid = subquery.finish_map
-LEFT JOIN finish ON map.map_nid = finish.finish_map AND subquery.min_finish_time = finish.finish_finish_time
-LEFT JOIN driver ON finish.finish_driver = driver.driver_uid
-WHERE type_map_rel.type_map_rel_type = ' . ((int) $current_type) . '
-GROUP BY map.map_uid, driver.driver_name;'
+    FROM map
+    LEFT JOIN type_map_rel ON map.map_uid = type_map_rel.type_map_rel_map
+    LEFT JOIN (
+        SELECT finish_map, MIN(finish_finish_time) AS min_finish_time
+        FROM finish
+        GROUP BY finish_map
+    ) AS subquery ON map.map_nid = subquery.finish_map
+    LEFT JOIN finish ON map.map_nid = finish.finish_map AND subquery.min_finish_time = finish.finish_finish_time
+    LEFT JOIN driver ON finish.finish_driver = driver.driver_uid
+    WHERE type_map_rel.type_map_rel_type = ' . ((int) $current_type) . '
+    GROUP BY map.map_uid, driver.driver_name;'
 );
 $temps = $query->execute()->fetchAll();
 
@@ -41,7 +41,7 @@ foreach ($temps as $temp) {
 
 ?>
 <div id="ranking_top" class="floater">
-    <select id="map_type_selector">
+    <select id="type_selector">
         <option disabled>Select</option>
         <?php foreach ($types as $type) : ?>
         <option value="<?= $type->id; ?>"<?= $current_type === $type->id ? ' selected' : ''; ?>><?= \htmlspecialchars($type->name); ?></option>
@@ -72,8 +72,8 @@ foreach ($temps as $temp) {
                 $hours = (int) \floor(($map['map_at_time'] % 86400) / 3600);
                 $minutes = (int) \floor(($map['map_at_time'] % 3600) / 60);
                 $seconds = $map['map_at_time'] % 60;
-		
-		$map['wr'] = $wrs[$map['map_uid']]['wr'];
+        
+                $map['wr'] = $wrs[$map['map_uid']]['wr'];
 
                 $map['wr'] = (int) ($map['wr'] / 1000);
                 $wdays = (int) \floor($map['wr'] / 86400);
@@ -83,7 +83,9 @@ foreach ($temps as $temp) {
             ?>
             <tr>
                 <td>
-                    <a href="https://trackmania.io/#/rooms/leaderboard/<?= \htmlspecialchars($map['map_uid']); ?>"><?= \preg_replace('/(\$...)/', '', \str_replace(['$o', '$i', '$w', '$n', '$t', '$s', '$g', '$z'], '', \htmlspecialchars($map['map_name']))); ?></a>
+                    <a href="https://trackmania.io/#/rooms/leaderboard/<?= \htmlspecialchars($map['map_uid']); ?>">
+                        <?= \preg_replace('/(\$...)/', '', \str_replace(['$o', '$i', '$w', '$n', '$t', '$s', '$g', '$z'], '', \htmlspecialchars($map['map_name']))); ?>
+                    </a>
                     <div class="img-container"><img loading="lazy" width="400px" src="<?= $map['map_img']; ?>"></div>
                 </td>
                 <td><?= \htmlspecialchars($map['map_uid']); ?></td>
@@ -95,17 +97,3 @@ foreach ($temps as $temp) {
             <?php endforeach; ?>
     </table>
 </div>
-
-<script>
-    jsOMS.ready(function ()
-    {
-        const map_type_selector = document.getElementById('map_type_selector');
-        if (map_type_selector !== null) {
-            map_type_selector.addEventListener('change', function() {
-                const url = new URL(window.location.href);
-                url.searchParams.set('type', map_type_selector.value);
-                window.location.href = url.toString();
-            });
-        }
-    });
-</script>
