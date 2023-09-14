@@ -177,3 +177,19 @@ ul {
     margin: 0;
     padding: 0;
 }
+
+table thead label {
+    cursor: pointer;
+}
+
+table thead input {
+    display: none;
+}
+
+table thead input+span {
+    display: none;
+}
+
+table thead input:checked+span {
+    display: inline-block;
+}

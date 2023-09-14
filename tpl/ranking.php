@@ -16,6 +16,24 @@ $query->raw(
 );
 $maps = $query->execute()->fetchAll();
 
+$orderSql = 'score DESC, fins DESC, ats DESC, golds DESC, silvers DESC, bronzes DESC, ftime ASC';
+
+if ($order === 'default') {
+    $orderSql = 'score DESC, fins DESC, ats DESC, golds DESC, silvers DESC, bronzes DESC, ftime ASC';
+} elseif ($order === 'finish') {
+    $orderSql = 'fins DESC, score DESC, ats DESC, golds DESC, silvers DESC, bronzes DESC, ftime ASC';
+} elseif ($order === 'at') {
+    $orderSql = 'ats DESC, score DESC, fins DESC, golds DESC, silvers DESC, bronzes DESC, ftime ASC';
+} elseif ($order === 'gold') {
+    $orderSql = 'golds DESC, score DESC, fins DESC, ats DESC, silvers DESC, bronzes DESC, ftime ASC';
+} elseif ($order === 'silver') {
+    $orderSql = 'silvers DESC, score DESC, fins DESC, ats DESC, golds DESC, bronzes DESC, ftime ASC';
+} elseif ($order === 'bronze') {
+    $orderSql = 'bronzes DESC, score DESC, fins DESC, ats DESC, golds DESC, silvers DESC, ftime ASC';
+} elseif ($order === 'time') {
+    $orderSql = 'ftime DESC, score DESC, fins DESC, ats DESC, golds DESC, silvers DESC, bronzes DESC';
+}
+
 $query = new Builder($db);
 $query->raw(
     'SELECT driver.driver_uid, driver.driver_name,
@@ -32,7 +50,7 @@ $query->raw(
     JOIN type_map_rel ON map.map_uid = type_map_rel.type_map_rel_map
     WHERE type_map_rel.type_map_rel_type = ' . ((int) $current_type) . '
     GROUP BY driver.driver_uid
-    ORDER BY score DESC, fins DESC, ats DESC, golds DESC, silvers DESC, bronzes DESC, ftime ASC
+    ORDER BY ' . $orderSql . '
     LIMIT ' . $limit . '
     OFFSET ' . $offset . '
     ;'
@@ -57,13 +75,13 @@ $scores = $query->execute()->fetchAll();
             <tr>
                 <th>Rank</th>
                 <th>Name</th>
-                <th>Points</th>
-                <th>Fins</th>
-                <th>AT</th>
-                <th>Gold</th>
-                <th>Silver</th>
-                <th>Bronze</th>
-                <th>Time</th>
+                <th><label for="sortPoints">Points</label><input type="radio" id="sortPoints" value="default" name="sort"<?= $order === 'default' ? ' checked' : ''; ?>> <span>🠋</span></th>
+                <th><label for="sortFins">Fins</label><input type="radio" id="sortFins" value="finish" name="sort"<?= $order === 'finish' ? ' checked' : ''; ?>> <span>🠋</span></th>
+                <th><label for="sortAts">AT</label><input type="radio" id="sortAts" value="at" name="sort"<?= $order === 'at' ? ' checked' : ''; ?>> <span>🠋</span></th>
+                <th><label for="sortGolds">Gold</label><input type="radio" id="sortGolds" value="gold" name="sort"<?= $order === 'gold' ? ' checked' : ''; ?>> <span>🠋</span></th>
+                <th><label for="sortSilvers">Silver</label><input type="radio" id="sortSilvers" value="silver" name="sort"<?= $order === 'silver' ? ' checked' : ''; ?>> <span>🠋</span></th>
+                <th><label for="sortBronzes">Bronze</label><input type="radio" id="sortBronzes" value="bronze" name="sort"<?= $order === 'bronze' ? ' checked' : ''; ?>> <span>🠋</span></th>
+                <th><label for="sortTimes">Time</label><input type="radio" id="sortTimes" value="time" name="sort"<?= $order === 'time' ? ' checked' : ''; ?>> <span>🠉</span></th>
             </tr>
         </thead>
         <tbody>
@@ -106,6 +124,16 @@ $scores = $query->execute()->fetchAll();
             ranking_type_selector.addEventListener('change', function() {
                 const url = new URL(window.location.href);
                 url.searchParams.set('type', ranking_type_selector.value);
+                window.location.href = url.toString();
+            });
+        }
+
+        const sort = document.querySelectorAll('table thead input[name="sort"]');
+        let length = sort.length;
+        for (let i = 0; i < length; ++i) {
+            sort[i].addEventListener('change', function() {
+                const url = new URL(window.location.href);
+                url.searchParams.set('order', this.value);
                 window.location.href = url.toString();
             });
         }

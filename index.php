@@ -12,6 +12,12 @@ $page = $request->getDataString('page') ?? 'ranking';
 if ($page !== 'maps' && $page !== 'user') {
     $page = 'ranking';
 }
+
+$order = $request->getDataString('order') ?? 'default';
+if ($order !== 'finish' && $order !== 'at' && $order !== 'gold' && $order !== 'silver' && $order !== 'bronze' && $order !== 'time') {
+    $order = 'default';
+}
+
 ?>
 <!DOCTYPE html>
     <head>
