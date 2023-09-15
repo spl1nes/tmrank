@@ -5,20 +5,20 @@ sudo -u www-data git pull /var/www/html/tmrank
 echo "#################################################"
 echo "# Remove"
 echo "#################################################"
-php remove.php
+php /var/www/html/tmrank/scripts/remove.php
 
 echo "#################################################"
 echo "# Maps"
 echo "#################################################"
-php maps.php
+php /var/www/html/tmrank/scripts/maps.php
 
 echo "#################################################"
 echo "# Drivers and Finnishes"
 echo "#################################################"
-php drivers.php
+php /var/www/html/tmrank/scripts/drivers.php
 
 echo "#################################################"
 echo "# Names"
 echo "#################################################"
-php names.php
+php /var/www/html/tmrank/scripts/names.php
 
