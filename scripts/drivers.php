@@ -133,7 +133,7 @@ foreach ($maps as $map) {
                 } elseif ($finish->finish_time < $map->bronze_time) {
                     $score = $map->bronze_score;
                 } else {
-                    $score = $finish->finish_score;
+                    $score = $map->finish_score;
                 }
 
                 if ($finish->finish_score !== $score) {
