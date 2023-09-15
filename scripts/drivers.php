@@ -123,19 +123,23 @@ foreach ($maps as $map) {
             ) {
                 $finish->finish_time = (int) $name['score'];
 
+                $score = 0;
                 if ($finish->finish_time < $map->at_time) {
-                    $finish->finish_score = $map->at_score;
+                    $score = $map->at_score;
                 } elseif ($finish->finish_time < $map->gold_time) {
-                    $finish->finish_score = $map->gold_score;
+                    $score = $map->gold_score;
                 } elseif ($finish->finish_time < $map->silver_time) {
-                    $finish->finish_score = $map->silver_score;
+                    $score = $map->silver_score;
                 } elseif ($finish->finish_time < $map->bronze_time) {
-                    $finish->finish_score = $map->bronze_score;
+                    $score = $map->bronze_score;
                 } else {
-                    $finish->finish_score = $map->finish_score;
+                    $score = $map->finish_score;
                 }
 
-                FinishMapper::update()->execute($finish);
+                if ($finish->finish_score !== $score) {
+                    $finish->finish_score = $score;
+                    FinishMapper::update()->execute($finish);
+                }
             }
         }
 
