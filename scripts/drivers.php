@@ -132,8 +132,6 @@ foreach ($maps as $map) {
                     $score = $map->silver_score;
                 } elseif ($finish->finish_time < $map->bronze_time) {
                     $score = $map->bronze_score;
-                } else {
-                    $score = $map->finish_score;
                 }
 
                 if ($finish->finish_score !== $score) {
