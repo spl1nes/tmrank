@@ -51,3 +51,5 @@ if (($handle = \fopen(__DIR__ . '/remove.csv', 'r')) !== false) {
     }
 }
 
+// Driver cleanup;
+// delete from driver where driver_uid in (select driver.driver_uid from driver left join finish on driver.driver_uid = finish.finish_driver where finish.finish_driver is null);
