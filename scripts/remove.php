@@ -48,7 +48,7 @@ if (($handle = \fopen(__DIR__ . '/remove.csv', 'r')) !== false) {
 	    $delete = new Builder($db);
 	    $delete->raw(
 	        'DELETE FROM finish 
-	        WHERE finish.map = ' . $map->nid . ';'
+	        WHERE finish.finish_map = "' . $map->nid . '";'
 	    )->execute();
         }
     }
