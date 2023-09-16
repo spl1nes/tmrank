@@ -4,6 +4,8 @@ include __DIR__ . '/../phpOMS/Autoloader.php';
 include __DIR__ . '/../db.php';
 include __DIR__ . '/../config.php';
 
+use phpOMS\DataStorage\Database\Query\Builder;
+
 // load csv
 $row = 0;
 if (($handle = \fopen(__DIR__ . '/remove.csv', 'r')) !== false) {
@@ -43,13 +45,23 @@ if (($handle = \fopen(__DIR__ . '/remove.csv', 'r')) !== false) {
             $map = MapMapper::get()->where('uid', $data[0])->execute();
             MapMapper::delete()->execute($map);
 
-            $fins = FinishMapper::getAll()->where('map', $map->nid)->execute();
-            foreach ($fins as $fin) {
-                FinishMapper::delete()->execute($fin);
-            }
+	    $delete = new Builder($db);
+	    $delete->raw(
+	        'DELETE FROM finish 
+	        WHERE finish.map = ' . $map->nid . ';'
+	    )->execute();
         }
     }
 }
 
-// Driver cleanup;
-// delete from driver where driver_uid in (select driver.driver_uid from driver left join finish on driver.driver_uid = finish.finish_driver where finish.finish_driver is null);
+// Driver cleanup
+$delete = new Builder($db);
+$delete->raw(
+	'DELETE FROM DRIVER 
+ 	WHERE driver.driver_uid IN (
+  		SELECT driver.driver_uid FROM driver 
+    		LEFT JOIN finish 
+      			on driver.driver_uid = finish.finish_driver 
+	 	WHERE finish.finish_driver IS NULL
+   	);'
+)->execute();
