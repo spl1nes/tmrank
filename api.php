@@ -9,10 +9,9 @@ use phpOMS\Message\Http\HttpRequest;
 $request = HttpRequest::createFromSuperglobals();
 
 $type = $request->getDataInt('type') ?? 1;
-$user = '';
 $map = '';
-$offset = 0;
-$limit = 500;
+$offset = $request->getDataInt('offset') ?? 0;
+$limit = $request->getDataInt('limit') ?? 500;
 
 $endpoint = $request->getDataString('endpoint') ?? 'ranking';
 
@@ -39,8 +38,8 @@ if ($endpoint === 'types') {
 
     $types = $query->execute()->fetchAll();
 
-    foreach (types as type) {
-        foreach (type as $key => $var) {
+    foreach ($types as $type) {
+        foreach ($type as $key => $var) {
             if (\is_numeric($key)) {
                 continue;
             }
