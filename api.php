@@ -167,6 +167,11 @@ if ($endpoint === 'types') {
             $result[$map['map_uid']][$key] = $var;
         }
     }
+} elseif ('finduser') {
+    // get user stats
+    $drivers = DriverMapper::getAll()->where('driver', $uname, 'LIKE')->execute();
+
+    $result = $drivers;
 }
 
 header('Content-Type: application/json; charset=utf-8');
