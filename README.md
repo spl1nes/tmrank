@@ -54,7 +54,7 @@ GET: https://tmrank.jingga.app/api.php?endpoint=ranking&type={type_id}&offset={o
 ```
 
 * `offset` - int / default 0
-* `limit` - int / default 500
+* `limit` - int / default 500 (a limit of 30,000 seems to be possible, this may require testing on your end how high you can go)
 * `order` - string / default default
 
 The `order` types supported are:
