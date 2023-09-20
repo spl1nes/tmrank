@@ -146,7 +146,6 @@ if ($endpoint === 'types') {
     }
 } elseif ('userstats') {
     // get user stats
-
     $query = new Builder($db);
     $query->raw(
         'SELECT *, finish.finish_finish_time AS fins, finish.finish_finish_score AS score
