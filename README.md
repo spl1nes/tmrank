@@ -58,7 +58,7 @@ GET: https://tmrank.jingga.app/api.php?endpoint=ranking&type={type_id}&offset={o
 * `order` - string / default default
 
 The `order` types supported are:
-* `default` - sorts by points, fins, ats, golds, silvers, bronzes all in descending order and finally by total time in ascending order
+* `default` - sorts in the following order by points, fins, ats, golds, silvers, bronzes all in descending order and finally by total time in ascending order
 * `finish` - sorts by finish count in descending order
 * `at` - sorts by at count in descending order
 * `gold` - sorts by gold count in descending order
