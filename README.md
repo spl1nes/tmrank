@@ -50,16 +50,26 @@ Get the user ranking for a certain map type / map list / map pack
 #### Request
 
 ```
-https://tmrank.jingga.app/api.php?endpoint=ranking&type={type_id}&offset={offset}&limit={limit}
+https://tmrank.jingga.app/api.php?endpoint=ranking&type={type_id}&offset={offset}&limit={limit}&order={order_keyword}
 ```
 
 * `offset` - int / default 0
 * `limit` - int / default 500
+* `order` - string / default default
+
+The `order` types supported are:
+* `default` - sorts by points, fins, ats, golds, silvers, bronzes all in descending order and finally by total time in ascending order
+* `finish` - sorts by finish count in descending order
+* `at` - sorts by at count in descending order
+* `gold` - sorts by gold count in descending order
+* `silver` - sorts by silver count in descending order
+* `bronze` - sorts by bronze count in descending order
+* `time` - sorts by total time in **ascending** order
 
 #### Example
 
 ```
-https://tmrank.jingga.app/api.php?endpoint=ranking&type=6&offset=1&limit=3
+https://tmrank.jingga.app/api.php?endpoint=ranking&type=6&offset=1&limit=3&order=finish
 ```
 
 ##### Response
@@ -162,4 +172,79 @@ https://tmrank.jingga.app/api.php?endpoint=maplist&type=6
 }
 ```
 
+### User stats
+
+Get user stats for a certain map type / map list / map pack
+
+#### Request
+
+```
+https://tmrank.jingga.app/api.php?endpoint=userstats&type={type_id}&uid={nadeo_user_id}
+```
+
+#### Example
+
+```
+https://tmrank.jingga.app/api.php?endpoint=userstats&type=6&uid=e5a9863b-1844-4436-a8a8-cea583888f8b
+```
+
+##### Response
+
+```json
+{
+    "HDOpZb_oOgVPf2PkTdGy1nvcKs0": {
+        "map_id": 389,
+        "map_nid": "e72d582b-a3d6-45a5-be3f-67d141400d04",
+        "map_uid": "HDOpZb_oOgVPf2PkTdGy1nvcKs0",
+        "map_name": "SPAM OF THE DAY #5 ICE",
+        "map_img": "https:\/\/prod.trackmania.core.nadeo.online\/storageObjects\/bf3d7584-1257-411b-911f-2bff3a616400.jpg",
+        "map_finish_score": 5,
+        "map_bronze_score": 6,
+        "map_silver_score": 7,
+        "map_gold_score": 8,
+        "map_at_score": 10,
+        "map_bronze_time": 19000,
+        "map_silver_time": 15000,
+        "map_gold_time": 13000,
+        "map_at_time": 12155,
+        "finish_id": 320734,
+        "finish_driver": "e5a9863b-1844-4436-a8a8-cea583888f8b",
+        "finish_map": "e72d582b-a3d6-45a5-be3f-67d141400d04",
+        "finish_finish_time": 21642,
+        "finish_finish_score": 5,
+        "type_map_rel_id": 402,
+        "type_map_rel_type": 6,
+        "type_map_rel_map": "HDOpZb_oOgVPf2PkTdGy1nvcKs0",
+        "fins": 21642,
+        "score": 5
+    },
+    ...
+    "xGyOppoWRMzvEiRnHkH8gwgVAtj": {
+        "map_id": 386,
+        "map_nid": "e24accb5-7718-4235-a5cc-e3acf7faa5a5",
+        "map_uid": "xGyOppoWRMzvEiRnHkH8gwgVAtj",
+        "map_name": "SPAM OF THE DAY #2 PRO MAP",
+        "map_img": "https:\/\/prod.trackmania.core.nadeo.online\/storageObjects\/2788317c-23a9-4e96-82df-d0984dd151fa.jpg",
+        "map_finish_score": 5,
+        "map_bronze_score": 6,
+        "map_silver_score": 7,
+        "map_gold_score": 8,
+        "map_at_score": 10,
+        "map_bronze_time": 46000,
+        "map_silver_time": 37000,
+        "map_gold_time": 33000,
+        "map_at_time": 30462,
+        "finish_id": 319409,
+        "finish_driver": "e5a9863b-1844-4436-a8a8-cea583888f8b",
+        "finish_map": "e24accb5-7718-4235-a5cc-e3acf7faa5a5",
+        "finish_finish_time": 29561,
+        "finish_finish_score": 10,
+        "type_map_rel_id": 399,
+        "type_map_rel_type": 6,
+        "type_map_rel_map": "xGyOppoWRMzvEiRnHkH8gwgVAtj",
+        "fins": 29561,
+        "score": 10
+    }
+}
+```
 
