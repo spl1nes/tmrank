@@ -7,3 +7,6 @@
 <Files index.php>
     Allow from all
 </Files>
+<Files api.php>
+    Allow from all
+</Files>
