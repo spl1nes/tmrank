@@ -248,7 +248,7 @@ GET: https://tmrank.jingga.app/api.php?endpoint=userstats&type=6&uid=e5a9863b-18
 }
 ```
 
-### Find a userid
+### Find a user id
 
 Find a username in the database. This search is global and not restricted by map pack / map type.
 
