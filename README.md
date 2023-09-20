@@ -1,4 +1,4 @@
-# Trackmania Ranking
+# TMRank
 
 This is a small ranking project for the game Trackmania. The website [https://tmrank.jingga.app](https://tmrank.jingga.app) contains some map packs for which it generates a player ranking based on the performance of the players on these maps. The data on the website is updated once every 24h.
 
