@@ -248,3 +248,50 @@ GET: https://tmrank.jingga.app/api.php?endpoint=userstats&type=6&uid=e5a9863b-18
 }
 ```
 
+### Find a userid
+
+Find a username in the database. This search is global and not restricted by map pack / map type.
+
+#### Request
+
+```
+GET: https://tmrank.jingga.app/api.php?endpoint=finduser&name={user_name}
+```
+
+#### Example
+
+```
+GET: https://tmrank.jingga.app/api.php?endpoint=finduser&name=spam
+```
+
+##### Response
+
+```json
+{
+    "3bb0d130-637d-46a6-9c19-87fe4bda3c52": {
+        "driver_uid": "3bb0d130-637d-46a6-9c19-87fe4bda3c52",
+        "driver_name": "Spammiej"
+    },
+    "988bc813-b3aa-496e-bd06-1afc45c2c65a": {
+        "driver_uid": "988bc813-b3aa-496e-bd06-1afc45c2c65a",
+        "driver_name": "spammossiej"
+    },
+    "15fa4146-df69-4a84-b8e0-76675da720fe": {
+        "driver_uid": "15fa4146-df69-4a84-b8e0-76675da720fe",
+        "driver_name": "Project_SadSpam"
+    },
+    "2f88da13-0d2f-4c64-ac08-2c97f4ac4a88": {
+        "driver_uid": "2f88da13-0d2f-4c64-ac08-2c97f4ac4a88",
+        "driver_name": "DrSpamoman"
+    },
+    "2fedbb68-71e7-4c39-838c-2d5d0dfc5cfc": {
+        "driver_uid": "2fedbb68-71e7-4c39-838c-2d5d0dfc5cfc",
+        "driver_name": "Spamo-"
+    },
+    "d18b4df3-9294-416f-ba54-efb4bca55482": {
+        "driver_uid": "d18b4df3-9294-416f-ba54-efb4bca55482",
+        "driver_name": "Jamspammer2021"
+    }
+}
+```
+
