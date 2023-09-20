@@ -33,7 +33,25 @@ if (\preg_match('/[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}/'
 
 $result = [];
 
-if ($endpoint === 'maplist') {
+if ($endpoint === 'types') {
+    $query = new Builder($db);
+    $query->raw('SELECT * FROM type;');
+
+    $types = $query->execute()->fetchAll();
+
+    foreach (types as type) {
+        $temp = [];
+        foreach (type as $key => $var) {
+            if (\is_numeric($key)) {
+                continue;
+            }
+
+            $temp[$key] = $var;
+        }
+
+        $result[] = $temp;
+    }
+} elseif ($endpoint === 'maplist') {
     // get all maps for a type
     $query = new Builder($db);
     $query->raw(
