@@ -40,16 +40,13 @@ if ($endpoint === 'types') {
     $types = $query->execute()->fetchAll();
 
     foreach (types as type) {
-        $temp = [];
         foreach (type as $key => $var) {
             if (\is_numeric($key)) {
                 continue;
             }
 
-            $temp[$key] = $var;
+            $result[$type['type_id']][$key] = $var;
         }
-
-        $result[] = $temp;
     }
 } elseif ($endpoint === 'maplist') {
     // get all maps for a type
