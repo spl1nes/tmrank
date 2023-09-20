@@ -8,7 +8,7 @@ If you would like to modify the map pack or change the scoring as a more experie
 
 ## Api
 
-We provide a very simple and open API
+We provide a very simple and open API. All responds are with `Content-Type: application/json;` headers.
 
 ### Types
 
@@ -17,7 +17,7 @@ Get all map packs:
 #### Example
 
 ```
-https://tmrank.jingga.app/api.php?endpoint=types
+GET: https://tmrank.jingga.app/api.php?endpoint=types
 ```
 
 ##### Response
@@ -50,7 +50,7 @@ Get the user ranking for a certain map type / map list / map pack
 #### Request
 
 ```
-https://tmrank.jingga.app/api.php?endpoint=ranking&type={type_id}&offset={offset}&limit={limit}&order={order_keyword}
+GET: https://tmrank.jingga.app/api.php?endpoint=ranking&type={type_id}&offset={offset}&limit={limit}&order={order_keyword}
 ```
 
 * `offset` - int / default 0
@@ -69,7 +69,7 @@ The `order` types supported are:
 #### Example
 
 ```
-https://tmrank.jingga.app/api.php?endpoint=ranking&type=6&offset=1&limit=3&order=finish
+GET: https://tmrank.jingga.app/api.php?endpoint=ranking&type=6&offset=1&limit=3&order=finish
 ```
 
 ##### Response
@@ -119,13 +119,13 @@ Get all maps for a certain map type / map list / map pack
 #### Request
 
 ```
-https://tmrank.jingga.app/api.php?endpoint=maplist&type={type_id}
+GET: https://tmrank.jingga.app/api.php?endpoint=maplist&type={type_id}
 ```
 
 #### Example
 
 ```
-https://tmrank.jingga.app/api.php?endpoint=maplist&type=6
+GET: https://tmrank.jingga.app/api.php?endpoint=maplist&type=6
 ```
 
 ##### Response
@@ -179,13 +179,13 @@ Get user stats for a certain map type / map list / map pack
 #### Request
 
 ```
-https://tmrank.jingga.app/api.php?endpoint=userstats&type={type_id}&uid={nadeo_user_id}
+GET: https://tmrank.jingga.app/api.php?endpoint=userstats&type={type_id}&uid={nadeo_user_id}
 ```
 
 #### Example
 
 ```
-https://tmrank.jingga.app/api.php?endpoint=userstats&type=6&uid=e5a9863b-1844-4436-a8a8-cea583888f8b
+GET: https://tmrank.jingga.app/api.php?endpoint=userstats&type=6&uid=e5a9863b-1844-4436-a8a8-cea583888f8b
 ```
 
 ##### Response
