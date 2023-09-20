@@ -75,3 +75,27 @@ if ($order !== 'finish' && $order !== 'at' && $order !== 'gold' && $order !== 's
         }
     });
 </script>
+<?php
+$filePath = __DIR__ . '/stats/impressions.json';
+$currentDate = \date('Y-m-d');
+$currentHour = \date('H');
+
+if (!\is_file($filePath)) {
+    \file_put_contents($filePath, '{}');
+}
+
+    $fileData = \file_get_contents($filePath);
+    $data = \json_decode($fileData, true);
+
+    if (!isset($data[$currentDate])) {
+        $data[$currentDate] = [];
+    }
+
+    if (!isset($data[$currentDate][$currentHour])) {
+        $data[$currentDate][$currentHour] = 0;
+    }
+
+    ++$data[$currentDate][$currentHour];
+
+\file_put_contents($filePath, \json_encode($data));
+?>

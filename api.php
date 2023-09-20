@@ -6,11 +6,15 @@ include_once __DIR__ . '/db.php';
 use phpOMS\DataStorage\Database\Query\Builder;
 use phpOMS\Message\Http\HttpRequest;
 
-$type = 1;
+$request = HttpRequest::createFromSuperglobals();
+
+$type = $request->getDataInt('type') ?? 1;
 $user = '';
 $map = '';
 $offset = 0;
 $limit = 500;
+
+$endpoint = $request->getDataString('endpoint') ?? 'ranking';
 
 // order
 $order = $request->getDataString('order') ?? 'default';
@@ -29,7 +33,7 @@ if (\preg_match('/[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}/'
 
 $result = [];
 
-if (1) {
+if ($endpoint === 'maplist') {
     // get all maps for a type
     $query = new Builder($db);
     $query->raw(
@@ -50,7 +54,7 @@ if (1) {
                 continue;
             }
 
-            $result[$map['map_id']][$key] = $var;
+            $result[$map['map_uid']][$key] = $var;
         }
     }
 
@@ -74,7 +78,7 @@ if (1) {
     foreach ($temps as $temp) {
         $result[$temp['map_uid']]['wr'] = $temp['wr'];
     }
-} elseif (2) {
+} elseif ($endpoint === 'ranking') {
     // get ranking list
     $orderSql = 'score DESC, fins DESC, ats DESC, golds DESC, silvers DESC, bronzes DESC, ftime ASC';
 
@@ -125,7 +129,7 @@ if (1) {
             $result[$score['driver_uid']][$key] = $var;
         }
     }
-} elseif (3) {
+} elseif ('userstats') {
     // get user stats
 
     $query = new Builder($db);
@@ -147,7 +151,7 @@ if (1) {
                 continue;
             }
 
-            $result[$map['map_id']][$key] = $var;
+            $result[$map['map_uid']][$key] = $var;
         }
     }
 }
