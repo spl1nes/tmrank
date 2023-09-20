@@ -4,7 +4,7 @@ This is a small ranking project for the game Trackmania. The website [https://tm
 
 ## Contribution
 
-If you would like to modify the map pack or change the scoring as a more experienced Trackmania player, please feel free to create a pull request for the `maps.csv` file where all the maps and their points are stored.
+If you would like to modify the map pack or change the scoring as a more experienced Trackmania player, please feel free to create a pull request for the `maps.csv` file where all the maps and their points are stored or contact me on [discord](https://discord.com/channels/1062368297728884797/1152204810343424030)
 
 ## Api
 
