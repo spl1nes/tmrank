@@ -12,6 +12,7 @@ $type = $request->getDataInt('type') ?? 1;
 $map = '';
 $offset = $request->getDataInt('offset') ?? 0;
 $limit = $request->getDataInt('limit') ?? 500;
+$uname = $request->getDataString('name') ?? '';
 
 $endpoint = $request->getDataString('endpoint') ?? 'ranking';
 
@@ -143,7 +144,7 @@ if ($endpoint === 'types') {
             $result[$score['driver_uid']][$key] = $var;
         }
     }
-} elseif ('userstats') {
+} elseif ($endpoint === 'userstats') {
     // get user stats
     $query = new Builder($db);
     $query->raw(
@@ -167,11 +168,16 @@ if ($endpoint === 'types') {
             $result[$map['map_uid']][$key] = $var;
         }
     }
-} elseif ('finduser') {
-    // get user stats
-    $drivers = DriverMapper::getAll()->where('driver', $uname, 'LIKE')->execute();
+} elseif ($endpoint === 'finduser') {
+    // find user
+    $drivers = DriverMapper::getAll()->where('name', '%' . $uname . '%', 'LIKE')->execute();
 
-    $result = $drivers;
+    foreach ($drivers as $driver) {
+        $result[$driver->uid] = [
+            'driver_uid' => $driver->uid,
+            'driver_name' => $driver->name,
+        ];
+    }
 }
 
 header('Content-Type: application/json; charset=utf-8');
