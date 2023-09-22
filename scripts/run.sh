@@ -13,7 +13,7 @@ echo "#################################################"
 php /var/www/html/tmrank/scripts/maps.php
 
 echo "#################################################"
-echo "# Drivers and Finnishes"
+echo "# Drivers and Finishes"
 echo "#################################################"
 php /var/www/html/tmrank/scripts/drivers.php
 
