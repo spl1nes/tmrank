@@ -135,7 +135,9 @@ if ($endpoint === 'types') {
     );
     $scores = $query->execute()->fetchAll();
 
+    $index = 0;
     foreach ($scores as $score) {
+        ++$index;
         foreach ($score as $key => $var) {
             if (\is_numeric($key)) {
                 continue;
@@ -143,6 +145,8 @@ if ($endpoint === 'types') {
 
             $result[$score['driver_uid']][$key] = $var;
         }
+
+        $result[$score['driver_uid']]['rank'] = $offset + $index;
     }
 } elseif ($endpoint === 'userstats') {
     // get user stats
