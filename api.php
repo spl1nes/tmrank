@@ -183,21 +183,35 @@ if ($endpoint === 'types') {
         ];
     }
 } elseif ($endpoint === 'user') {
-        $query = new Builder($db);
+    $query = new Builder($db);
     $query->raw(
         'SELECT *
+        (SELECT COUNT(*) + 1
+     FROM (
+         SELECT
+             driver.driver_uid,
+             SUM(finish.finish_finish_score) AS score
+         FROM driver
+         JOIN finish ON driver.driver_uid = finish.finish_driver
+         JOIN map ON finish.finish_map = map.map_nid
+         JOIN type_map_rel ON map.map_uid = type_map_rel.type_map_rel_map
+         WHERE type_map_rel.type_map_rel_type = 1
+         GROUP BY driver.driver_uid
+         HAVING SUM(finish.finish_finish_score) > score
+     ) AS subquery
+    ) AS rank
         FROM driver
         WHERE driver.driver_uid = \'' . $uid . '\';'
     );
-    $user = $query->execute()->fetchAll();
+    $users = $query->execute()->fetchAll();
 
-    foreach (user as $map) {
+    foreach ($users as $user) {
         foreach ($user as $key => $var) {
             if (\is_numeric($key)) {
                 continue;
             }
 
-            $result[$map['driver_uid']][$key] = $var;
+            $result[$user['driver_uid']][$key] = $var;
         }
     }
 }
