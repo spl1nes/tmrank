@@ -298,3 +298,54 @@ GET: https://tmrank.jingga.app/api.php?endpoint=finduser&name=spam
 }
 ```
 
+### Global user data
+
+Get application wide user data. This api endpoint is slow as it calculates the ranking live for every map type / map pack.
+
+#### Request
+
+```
+GET: https://tmrank.jingga.app/api.php?endpoint=user&uid={nadeo_user_id}
+```
+
+#### Example
+
+```
+GET: https://tmrank.jingga.app/api.php?endpoint=user&uid=e8f35258-b507-487d-b470-52587d1445a6
+```
+
+##### Response
+
+```json
+{
+    "driver_uid": "e8f35258-b507-487d-b470-52587d1445a6",
+    "driver_name": "Denniss..",
+    "types": {
+        "1": {
+            "type_id": 1,
+            "type_name": "RPG",
+            "score": 336,
+            "fins": 24,
+            "ats": 9,
+            "golds": 13,
+            "silvers": 21,
+            "bronzes": 22,
+            "ftime": 23711517,
+            "rank": 1112
+        },
+        ...
+        "10": {
+            "type_id": 10,
+            "type_name": "TMFL",
+            "score": 287,
+            "fins": 35,
+            "ats": 8,
+            "golds": 26,
+            "silvers": 35,
+            "bronzes": 35,
+            "ftime": 6812389,
+            "rank": 95
+        }
+    }
+}
+```
