@@ -183,35 +183,54 @@ if ($endpoint === 'types') {
         ];
     }
 } elseif ($endpoint === 'user') {
-    $query = new Builder($db);
-    $query->raw(
-        'SELECT *
-        (SELECT COUNT(*) + 1
-     FROM (
-         SELECT
-             driver.driver_uid,
-             SUM(finish.finish_finish_score) AS score
-         FROM driver
-         JOIN finish ON driver.driver_uid = finish.finish_driver
-         JOIN map ON finish.finish_map = map.map_nid
-         JOIN type_map_rel ON map.map_uid = type_map_rel.type_map_rel_map
-         WHERE type_map_rel.type_map_rel_type = 1
-         GROUP BY driver.driver_uid
-         HAVING SUM(finish.finish_finish_score) > score
-     ) AS subquery
-    ) AS rank
-        FROM driver
-        WHERE driver.driver_uid = \'' . $uid . '\';'
-    );
-    $users = $query->execute()->fetchAll();
+    $types = TypeMapper::getAll()->execute();
+    $userData = [];
 
-    foreach ($users as $user) {
-        foreach ($user as $key => $var) {
-            if (\is_numeric($key)) {
-                continue;
-            }
+    foreach ($types as $type) {
+        $query = new Builder($db);
+        $query->raw(
+            'SELECT driver_uid, driver_name, score, fins, ats, golds, silvers, bronzes, ftime, rank
+            FROM (
+              SELECT
+                driver.driver_uid,
+                driver.driver_name,
+                SUM(finish.finish_finish_score) AS score,
+                COUNT(finish.finish_finish_time) AS fins,
+                COUNT(CASE WHEN finish.finish_finish_time <= map.map_at_time THEN finish.finish_finish_score ELSE NULL END) AS ats,
+                COUNT(CASE WHEN finish.finish_finish_time <= map.map_gold_time THEN finish.finish_finish_score ELSE NULL END) AS golds,
+                COUNT(CASE WHEN finish.finish_finish_time <= map.map_silver_time THEN finish.finish_finish_score ELSE NULL END) AS silvers,
+                COUNT(CASE WHEN finish.finish_finish_time <= map.map_bronze_time THEN finish.finish_finish_score ELSE NULL END) AS bronzes,
+                SUM(finish.finish_finish_time) AS ftime,
+                ROW_NUMBER() OVER (ORDER BY SUM(finish.finish_finish_score) DESC) AS rank
+              FROM driver
+              JOIN finish ON driver.driver_uid = finish.finish_driver
+              JOIN map ON finish.finish_map = map.map_nid
+              JOIN type_map_rel ON map.map_uid = type_map_rel.type_map_rel_map
+              WHERE type_map_rel.type_map_rel_type = 1
+              GROUP BY driver.driver_uid, driver.driver_name
+            ) AS RankedDrivers
+            WHERE driver_uid = \'aad4a1cf-e0e8-4636-af98-645b6077e811\';'
+        );
+        $users = $query->execute()->fetchAll();
 
-            $result[$user['driver_uid']][$key] = $var;
+        $result['types'] = [];
+
+        foreach ($users as $user) {
+            $result['driver_uid'] = $user['driver_uid'];
+            $result['driver_name'] = $user['driver_name'];
+            
+            $result['types'][$type->id] = [
+                'type_id' => $type->id,
+                'type_name' => $type->name,
+                'score' => $user['score'],
+                'fins' => $user['fins'],
+                'ats' => $user['ats'],
+                'golds' => $user['golds'],
+                'silvers' => $user['silvers'],
+                'bronzes' => $user['bronzes'],
+                'ftime' => $user['ftime'],
+                'rank' => $user['rank'],
+            ];
         }
     }
 }
