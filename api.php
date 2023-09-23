@@ -184,7 +184,7 @@ if ($endpoint === 'types') {
     }
 } elseif ($endpoint === 'user') {
     $types = MapTypeMapper::getAll()->execute();
-    $userData = [
+    $result = [
         'types' => []
     ];
     
