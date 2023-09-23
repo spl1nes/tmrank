@@ -250,6 +250,7 @@ if ($endpoint === 'types') {
 header('Content-Type: application/json; charset=utf-8');
 echo \json_encode($result, \JSON_PRETTY_PRINT);
 
+// Logging
 $filePath = __DIR__ . '/stats/api.json';
 $currentDate = \date('Y-m-d');
 $currentHour = \date('H');
@@ -258,17 +259,17 @@ if (!\is_file($filePath)) {
     \file_put_contents($filePath, '{}');
 }
 
-    $fileData = \file_get_contents($filePath);
-    $data = \json_decode($fileData, true);
+$fileData = \file_get_contents($filePath);
+$data = \json_decode($fileData, true);
 
-    if (!isset($data[$currentDate])) {
-        $data[$currentDate] = [];
-    }
+if (!isset($data[$currentDate])) {
+    $data[$currentDate] = [];
+}
 
-    if (!isset($data[$currentDate][$currentHour])) {
-        $data[$currentDate][$currentHour] = 0;
-    }
+if (!isset($data[$currentDate][$currentHour])) {
+    $data[$currentDate][$currentHour] = 0;
+}
 
-    ++$data[$currentDate][$currentHour];
+++$data[$currentDate][$currentHour];
 
 \file_put_contents($filePath, \json_encode($data));
