@@ -300,7 +300,7 @@ GET: https://tmrank.jingga.app/api.php?endpoint=finduser&name=spam
 
 ### Global user data
 
-Get application wide user data. This api endpoint is slow as it calculates the ranking live for every map type / map pack.
+Get application wide user data. This api endpoint is slow as it calculates the ranking live for every map type / map pack. Try to avoid this api request.
 
 #### Request
 
