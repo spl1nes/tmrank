@@ -182,6 +182,24 @@ if ($endpoint === 'types') {
             'driver_name' => $driver->name,
         ];
     }
+} elseif ($endpoint === 'user') {
+        $query = new Builder($db);
+    $query->raw(
+        'SELECT *
+        FROM driver
+        WHERE driver.driver_uid = \'' . $uid . '\';'
+    );
+    $user = $query->execute()->fetchAll();
+
+    foreach (user as $map) {
+        foreach ($user as $key => $var) {
+            if (\is_numeric($key)) {
+                continue;
+            }
+
+            $result[$map['driver_uid']][$key] = $var;
+        }
+    }
 }
 
 header('Content-Type: application/json; charset=utf-8');
