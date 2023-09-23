@@ -184,8 +184,10 @@ if ($endpoint === 'types') {
     }
 } elseif ($endpoint === 'user') {
     $types = MapTypeMapper::getAll()->execute();
-    $userData = [];
-
+    $userData = [
+        'types' => []
+    ];
+    
     foreach ($types as $type) {
         $query = new Builder($db);
         $query->raw(
@@ -220,8 +222,8 @@ if ($endpoint === 'types') {
             WHERE driver_uid = \'' . $uid . '\';'
         );
         $users = $query->execute()->fetchAll();
-
-        $result['types'] = [];
+        
+        $result['types'] = [$type->id => []];
 
         foreach ($users as $user) {
             $result['driver_uid'] = $user['driver_uid'];
