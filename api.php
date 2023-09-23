@@ -183,7 +183,7 @@ if ($endpoint === 'types') {
         ];
     }
 } elseif ($endpoint === 'user') {
-    $types = TypeMapper::getAll()->execute();
+    $types = MapTypeMapper::getAll()->execute();
     $userData = [];
 
     foreach ($types as $type) {
