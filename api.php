@@ -201,12 +201,20 @@ if ($endpoint === 'types') {
                 COUNT(CASE WHEN finish.finish_finish_time <= map.map_silver_time THEN finish.finish_finish_score ELSE NULL END) AS silvers,
                 COUNT(CASE WHEN finish.finish_finish_time <= map.map_bronze_time THEN finish.finish_finish_score ELSE NULL END) AS bronzes,
                 SUM(finish.finish_finish_time) AS ftime,
-                ROW_NUMBER() OVER (ORDER BY SUM(finish.finish_finish_score) DESC) AS rank
+                ROW_NUMBER() OVER (
+                    ORDER BY SUM(finish.finish_finish_score) DESC, 
+                    COUNT(finish.finish_finish_time) DESC,
+                    COUNT(CASE WHEN finish.finish_finish_time <= map.map_at_time THEN finish.finish_finish_score ELSE NULL END) DESC,
+                    COUNT(CASE WHEN finish.finish_finish_time <= map.map_gold_time THEN finish.finish_finish_score ELSE NULL END) DESC,
+                    COUNT(CASE WHEN finish.finish_finish_time <= map.map_silver_time THEN finish.finish_finish_score ELSE NULL END) DESC,
+                    COUNT(CASE WHEN finish.finish_finish_time <= map.map_bronze_time THEN finish.finish_finish_score ELSE NULL END) DESC,
+                    SUM(finish.finish_finish_time) ASC
+                ) AS rank
               FROM driver
               JOIN finish ON driver.driver_uid = finish.finish_driver
               JOIN map ON finish.finish_map = map.map_nid
               JOIN type_map_rel ON map.map_uid = type_map_rel.type_map_rel_map
-              WHERE type_map_rel.type_map_rel_type = 1
+              WHERE type_map_rel.type_map_rel_type = ' . $type->id . '
               GROUP BY driver.driver_uid, driver.driver_name
             ) AS RankedDrivers
             WHERE driver_uid = \'aad4a1cf-e0e8-4636-af98-645b6077e811\';'
