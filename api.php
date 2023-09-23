@@ -185,9 +185,9 @@ if ($endpoint === 'types') {
 } elseif ($endpoint === 'user') {
     $types = MapTypeMapper::getAll()->execute();
 
-    $result['driver_uid'] = $uid;
-    $result['driver_name'] = '';
     $result = [
+        'driver_uid' => $uid,
+        'driver_name' => '',
         'types' => []
     ];
     
