@@ -219,7 +219,7 @@ if ($endpoint === 'types') {
               WHERE type_map_rel.type_map_rel_type = ' . $type->id . '
               GROUP BY driver.driver_uid, driver.driver_name
             ) AS RankedDrivers
-            WHERE driver.driver_uid = \'' . $uid . '\';'
+            WHERE driver_uid = \'' . $uid . '\';'
         );
         $users = $query->execute()->fetchAll();
         
