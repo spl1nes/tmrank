@@ -48,7 +48,13 @@ foreach ($temps as $temp) {
         <?php endforeach; ?>
     </select>
 
-    <a class="button" href="?type=<?= (int) $current_type; ?>">Back</a>
+    <form method="GET" action="/">
+        <input type="text" name="user_search">
+        <input type="hidden" name="page" value="user_search">
+        <input type="submit" value="Search">
+    </form>
+
+    <a class="button" href="?type=<?= (int) $current_type; ?>">Ranking</a>
 
     <span class="global_maps_stat">Maps: <?= \count($maps); ?></span>
 </div>
