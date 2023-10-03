@@ -66,6 +66,11 @@ $scores = $query->execute()->fetchAll();
 
     <a class="button" href="?type=<?= (int) $current_type; ?>&page=maps">Maps</a>
 
+    <form method="GET" action="?page=user_search">
+        <input type="text" name="user_search">
+        <input type="submit" value="Search">
+    </form>
+
     <span class="global_maps_stat">Maps: <?= $maps[0][0]; ?></span>
 </div>
 <div class="floater">
