@@ -9,7 +9,7 @@ $request = HttpRequest::createFromSuperglobals();
 $current_type = $request->getDataInt('type') ?? 1;
 $page = $request->getDataString('page') ?? 'ranking';
 
-if ($page !== 'maps' && $page !== 'user') {
+if ($page !== 'maps' && $page !== 'user' && $page !== 'user_search') {
     $page = 'ranking';
 }
 
