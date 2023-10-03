@@ -50,13 +50,13 @@ $user = DriverMapper::get()->where('uid', $uid)->execute();
         <?php endforeach; ?>
     </select>
 
+    <a class="button" href="?type=<?= (int) $current_type; ?>">Ranking</a>
+
     <form method="GET" action="/">
         <input type="text" name="user_search">
         <input type="hidden" name="page" value="user_search">
         <input type="submit" value="Search">
     </form>
-
-    <a class="button" href="?type=<?= (int) $current_type; ?>">Ranking</a>
 
     <span class="global_maps_stat"><?= \htmlspecialchars($user->name); ?> Maps: <?=\count($maps); ?> / <?= \count($maps) + \count($missing) ?></span> 
 </div> <div class="floater">
