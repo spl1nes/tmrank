@@ -74,9 +74,9 @@ $types = MapTypeMapper::getAll()->execute();
 ?>
 
 <div id="search_top" class="floater">
-    <a class="button" href="?type=<?= (int) $current_type; ?>">Back</a>
+    <a class="button" href="?type=<?= (int) $current_type; ?>">Ranking</a>
 
-    <form method="GET" action="?page=user_search">
+    <form method="GET" action="/">
         <input type="text" name="user_search">
         <input type="hidden" name="page" value="user_search">
         <input type="submit" value="Search">
