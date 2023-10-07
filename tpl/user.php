@@ -130,7 +130,7 @@ $user = DriverMapper::get()->where('uid', $uid)->execute();
             <tr>
                 <td>
                     <a href="https://trackmania.io/#/rooms/leaderboard/<?= \htmlspecialchars($map['map_uid']); ?>"><?= \preg_replace('/(\$...)/', '', \str_replace(['$o', '$i', '$w', '$n', '$t', '$s', '$g', '$z'], '', \htmlspecialchars($map['map_name']))); ?></a>
-                    <div class="img-container"><img width="400px" src="<?= $map['map_img']; ?>"></div>
+                    <div class="img-container"><img loading="lazy" width="400px" src="<?= $map['map_img']; ?>"></div>
                 </td>
                 <td><?= \htmlspecialchars($map['map_uid']); ?></td>
                 <td><?= $map['map_finish_score']; ?>/<?= $map['map_bronze_score']; ?>/<?= $map['map_silver_score']; ?>/<?= $map['map_gold_score']; ?>/<?= $map['map_at_score']; ?></td>
