@@ -118,9 +118,7 @@ foreach ($maps as $map) {
                 }
 
                 FinishMapper::create()->execute($finish);
-            } elseif (/*$finish->finish_time !== ((int) $name['score'])
-                && */((int) $name['score']) > 0
-            ) {
+            } elseif ($finish->finish_time !== ((int) $name['score'])) {
                 $finish->finish_time = (int) $name['score'];
 
                 $score = 0;
@@ -136,7 +134,7 @@ foreach ($maps as $map) {
                     $score = $map->finish_score;
                 }
 
-                if ($finish->finish_score !== $score) {
+                if ($finish->finish_score <= $score) {
                     $finish->finish_score = $score;
                     FinishMapper::update()->execute($finish);
                 }
