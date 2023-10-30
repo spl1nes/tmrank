@@ -50,7 +50,7 @@ foreach ($temps as $temp) {
 
     <form method="GET" action="/">
         <input type="text" name="user_search">
-        <input type="hidden" name="page" value="user_search">
+        <input type="hidden" name="page" value="user_search" placeholder="player name">
         <input type="submit" value="Search">
     </form>
 
