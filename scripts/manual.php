@@ -25,7 +25,7 @@ if (($handle = \fopen(__DIR__ . '/manual.csv', 'r')) !== false) {
         }
 
         // @var Driver $driver
-        $driver = DriverMapper::get()->where('uid', data[0])->execute();
+        $driver = DriverMapper::get()->where('uid', $data[0])->execute();
         if ($driver->id === 0) {
             continue;
         }
