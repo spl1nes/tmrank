@@ -33,7 +33,7 @@ if ($order !== 'finish' && $order !== 'at' && $order !== 'gold' && $order !== 's
         <header>
             <div class="floater">
                 <a id="toplogo" href="/">
-                    <img alt="Logo" src="/tpl/logo.png" width="40px">
+                    <img width="40" height=""38 alt="Logo" src="/tpl/logo.png" width="40px">
                     <span>Jingga</span>
                 </a>
             </div>
