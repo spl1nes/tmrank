@@ -60,7 +60,7 @@ AddType application/vnd.ms-fontobject .eot
 
     <FilesMatch "\.(php)$">
         ExpiresDefault A300
-        Header set Cache-Control "max-age=43200"
+        Header set Cache-Control "public, max-age=43200"
     </FilesMatch>
 </ifModule>
 # END Caching
