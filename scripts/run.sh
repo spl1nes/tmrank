@@ -21,6 +21,11 @@ echo "#################################################"
 php /var/www/html/tmrank/scripts/drivers.php
 
 echo "#################################################"
+echo "# Manual finish times"
+echo "#################################################"
+php /var/www/html/tmrank/scripts/manual.php
+
+echo "#################################################"
 echo "# Names"
 echo "#################################################"
 php /var/www/html/tmrank/scripts/names.php
