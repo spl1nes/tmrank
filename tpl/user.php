@@ -59,7 +59,42 @@ $user = DriverMapper::get()->where('uid', $uid)->execute();
     </form>
 
     <span class="global_maps_stat"><?= \htmlspecialchars($user->name); ?> Maps: <?=\count($maps); ?> / <?= \count($maps) + \count($missing) ?></span> 
-</div> <div class="floater">
+</div>
+
+<div class="floater">
+    <h1>Unfinished</h1>
+    <table id="maps">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>ID</th>
+                <th>Points</th>
+                <th>AT</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php
+            foreach ($missing as $map) :
+                $ms = (int) ($map['map_at_time'] % 1000);
+                $map['map_at_time'] = (int) ($map['map_at_time'] / 1000);
+                $days = (int) \floor($map['map_at_time'] / 86400);
+                $hours = (int) \floor(($map['map_at_time'] % 86400) / 3600);
+                $minutes = (int) \floor(($map['map_at_time'] % 3600) / 60);
+                $seconds = $map['map_at_time'] % 60;
+            ?>
+            <tr>
+                <td>
+                    <a href="https://trackmania.io/#/rooms/leaderboard/<?= \htmlspecialchars($map['map_uid']); ?>"><?= \preg_replace('/(\$...)/', '', \str_replace(['$o', '$i', '$w', '$n', '$t', '$s', '$g', '$z'], '', \htmlspecialchars($map['map_name']))); ?></a>
+                    <div class="img-container"><img loading="lazy" width="400px" src="<?= $map['map_img']; ?>"></div>
+                </td>
+                <td><?= \htmlspecialchars($map['map_uid']); ?></td>
+                <td><?= $map['map_finish_score']; ?>/<?= $map['map_bronze_score']; ?>/<?= $map['map_silver_score']; ?>/<?= $map['map_gold_score']; ?>/<?= $map['map_at_score']; ?></td>
+                <td><?= \sprintf("%02d:%02d:%02d.%03d", $hours, $minutes, $seconds, $ms); ?></td>
+            <?php endforeach; ?>
+    </table>
+</div>
+
+<div class="floater">
     <h1>Finished</h1>
     <table id="maps">
         <thead>
@@ -102,39 +137,6 @@ $user = DriverMapper::get()->where('uid', $uid)->execute();
                 </td>
                 <td><?= \sprintf("%02d:%02d:%02d.%03d", $hours, $minutes, $seconds, $ms); ?></td>
                 <td><?= \sprintf("%02d:%02d:%02d.%03d", $fhours, $fminutes, $fseconds, $fms); ?></td>
-            <?php endforeach; ?>
-    </table>
-</div>
-
-<div class="floater">
-    <h1>Unfinished</h1>
-    <table id="maps">
-        <thead>
-            <tr>
-                <th>Name</th>
-                <th>ID</th>
-                <th>Points</th>
-                <th>AT</th>
-            </tr>
-        </thead>
-        <tbody>
-            <?php
-            foreach ($missing as $map) :
-                $ms = (int) ($map['map_at_time'] % 1000);
-                $map['map_at_time'] = (int) ($map['map_at_time'] / 1000);
-                $days = (int) \floor($map['map_at_time'] / 86400);
-                $hours = (int) \floor(($map['map_at_time'] % 86400) / 3600);
-                $minutes = (int) \floor(($map['map_at_time'] % 3600) / 60);
-                $seconds = $map['map_at_time'] % 60;
-            ?>
-            <tr>
-                <td>
-                    <a href="https://trackmania.io/#/rooms/leaderboard/<?= \htmlspecialchars($map['map_uid']); ?>"><?= \preg_replace('/(\$...)/', '', \str_replace(['$o', '$i', '$w', '$n', '$t', '$s', '$g', '$z'], '', \htmlspecialchars($map['map_name']))); ?></a>
-                    <div class="img-container"><img loading="lazy" width="400px" src="<?= $map['map_img']; ?>"></div>
-                </td>
-                <td><?= \htmlspecialchars($map['map_uid']); ?></td>
-                <td><?= $map['map_finish_score']; ?>/<?= $map['map_bronze_score']; ?>/<?= $map['map_silver_score']; ?>/<?= $map['map_gold_score']; ?>/<?= $map['map_at_score']; ?></td>
-                <td><?= \sprintf("%02d:%02d:%02d.%03d", $hours, $minutes, $seconds, $ms); ?></td>
             <?php endforeach; ?>
     </table>
 </div>
