@@ -1,40 +1,66 @@
 # BEGIN Gzip Compression
 <ifmodule mod_rewrite.c>
      AddEncoding gzip .gz
-     <filesmatch "\.js\.gz$">
+     <FilesMatch "\.js\.gz$">
         AddType "text/javascript" .gz
-     </filesmatch>
-     <filesmatch "\.css\.gz$">
+     </FilesMatch>
+     <FilesMatch "\.css\.gz$">
         AddType "text/css" .gz
-     </filesmatch>
+     </FilesMatch>
+     <FilesMatch "\.svg\.gz$">
+        AddType "image/svg+xml" .gz
+     </FilesMatch>
 </ifmodule>
 
+AddType text/javascript .js
+AddType text/css .css
+AddType image/webp .webp
+AddType image/x-icon .ico
+AddType image/svg+xml .svg
 AddType font/ttf .ttf
 AddType font/otf .otf
 AddType application/font-woff .woff
+AddType application/font-woff2 .woff2
 AddType application/vnd.ms-fontobject .eot
 
 <ifmodule mod_deflate.c>
-    AddOutputFilterByType DEFLATE text/text text/html text/plain text/xml text/css application/x-javascript application/javascript text/javascript
+    AddOutputFilterByType DEFLATE text/text text/html text/plain text/xml text/css application/x-javascript application/javascript text/javascript image/svg+xml
 </ifmodule>
 # END Gzip Compression
 
-# Force mime for javascript files
-<Files "*.js">
-    ForceType text/javascript
-</Files>
-
 # BEGIN Caching
 <ifModule mod_expires.c>
+    Header unset Cache-Control
+
     ExpiresActive On
     ExpiresDefault A300
 
-    ExpiresByType image/x-icon A2592000
+    ExpiresByType application/vnd.ms-fontobject "access plus 1 year"
+    ExpiresByType font/ttf "access plus 1 year"
+    ExpiresByType font/otf "access plus 1 year"
+    ExpiresByType font/woff "access plus 1 year"
+    ExpiresByType font/woff2 "access plus 1 year"
 
-    <FilesMatch ".(php)$">
+    ExpiresByType image/jpeg "access plus 31 days"
+    ExpiresByType image/jpg "access plus 31 days"
+    ExpiresByType image/png "access plus 31 days"
+    ExpiresByType image/gif "access plus 31 days"
+    ExpiresByType image/gif "access plus 31 days"
+    ExpiresByType image/webp "access plus 31 days"
+    ExpiresByType image/x-icon "access plus 31 days"
+    ExpiresByType image/svg+xml "access plus 31 days"
+
+    ExpiresByType text/javascript "access plus 31 days"
+    ExpiresByType text/x-javascript "access plus 31 days"
+    ExpiresByType application/javascript "access plus 31 days"
+    ExpiresByType application/x-javascript "access plus 31 days"
+    ExpiresByType application/json "access plus 31 days"
+
+    ExpiresByType text/css "access plus 31 days"
+
+    <FilesMatch "\.(php)$">
         ExpiresDefault A0
-        Header set Cache-Control "no-store, no-cache, must-revalidate, max-age=0"
-        Header set Pragma "no-cache"
+        Header set Cache-Control "no-store, no-cache, must-revalidate, max-age=43200"
     </FilesMatch>
 </ifModule>
 # END Caching
