@@ -8,7 +8,7 @@ If you would like to modify the map pack or change the scoring as a more experie
 
 ## Api
 
-We provide a very simple and open API. All responds are with `Content-Type: application/json;` headers.
+We provide a very simple and open API. All responses are with `Content-Type: application/json;` headers.
 
 ### Types
 
