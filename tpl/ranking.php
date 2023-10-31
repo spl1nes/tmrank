@@ -57,7 +57,7 @@ $query->raw(
 $scores = $query->execute()->fetchAll();
 ?>
 <div id="ranking_top" class="floater">
-    <select id="type_selector">
+    <select id="type_selector" aria-label="Map types">
         <option disabled>Select</option>
         <?php foreach ($types as $type) : ?>
         <option value="<?= $type->id; ?>"<?= $current_type === $type->id ? ' selected' : ''; ?>><?= \htmlspecialchars($type->name); ?></option>
