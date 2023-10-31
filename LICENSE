@@ -23,5 +23,9 @@ SOFTWARE.
 
 LIMITATIONS:
 
-Not included in this license are the two submodules jsOMS and phpOMS which 
-have their own licenses.
+Not included in this license are:
+
+* The submodule jsOMS
+* The submodule phpOMS
+* The favicon.ico
+* The logo.webp
