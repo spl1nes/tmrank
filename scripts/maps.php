@@ -17,7 +17,6 @@ function authenticate($email, $password)
     $request->header->set('Authorization', 'Basic ' . \base64_encode($email . ':' . $password));
     $request->header->set('User-Agent', 'Map pack ranking / ' . $email);
     $request->setMethod('POST');
-    $request->data['audience'] = 'NadeoServices';
     $response = Rest::request($request);
 
     $request = new HttpRequest(new HttpUri('https://prod.trackmania.core.nadeo.online/v2/authentication/token/ubiservices'));
