@@ -21,7 +21,7 @@ class DriverMapper extends DataMapperFactory
         'driver_id'   => ['name' => 'driver_id',   'type' => 'int',    'internal' => 'id'],
         'driver_uid'  => ['name' => 'driver_uid',  'type' => 'string', 'internal' => 'uid'],
         'driver_name' => ['name' => 'driver_name', 'type' => 'string', 'internal' => 'name'],
-        'driver_last_name_check' => ['name' => 'driver_last_name_check', 'type' => 'string', 'internal' => 'last_name_check'],
+        'driver_last_name_check' => ['name' => 'driver_last_name_check', 'type' => 'int', 'internal' => 'last_name_check'],
     ];
 
     public const TABLE = 'driver';
