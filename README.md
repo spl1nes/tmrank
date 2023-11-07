@@ -8,7 +8,7 @@ If you would like to modify the map pack or change the scoring as a more experie
 
 ### Removing maps
 
-If a map should be removed from a map pack the [remove.csv](scripts/remove.csv) file needs to be expanded by the map + map pack type. And the map must be removed from the [map.csv](maps.csv) file.
+If a map should be removed from a map pack the [remove.csv](scripts/remove.csv) file needs to be expanded by the map + map pack type. And the map must be removed from the [maps.csv](maps.csv) file.
 
 ### Manual times
 
