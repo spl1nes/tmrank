@@ -31,6 +31,7 @@ class DriverMapper extends DataMapperFactory
 class DriverStat
 {
     public int $id = 0;
+    public int $type = 0;
     public string $uid = '';
     public int $score = 0;
     public int $fins = 0;
@@ -48,6 +49,7 @@ class DriverStatMapper extends DataMapperFactory
 {
     public const COLUMNS = [
         'driverstat_id'   => ['name' => 'driverstat_id',   'type' => 'int',    'internal' => 'id'],
+        'driverstat_type'  => ['name' => 'driverstat_type',  'type' => 'int', 'internal' => 'type'],
         'driverstat_uid'  => ['name' => 'driverstat_uid',  'type' => 'string', 'internal' => 'uid'],
         'driverstat_score'  => ['name' => 'driverstat_score',  'type' => 'int', 'internal' => 'score'],
         'driverstat_fins'  => ['name' => 'driverstat_fins',  'type' => 'int', 'internal' => 'fins'],
