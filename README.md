@@ -4,7 +4,7 @@ This is a small ranking project for the game Trackmania. The website [https://tm
 
 ## Contribution
 
-If you would like to modify the map pack or change the scoring as a more experienced Trackmania player, please feel free to create a pull request for the `maps.csv` file where all the maps and their points are stored or contact me on [discord](https://discord.com/channels/1062368297728884797/1152204810343424030). Please be considerate with what maps or map packs to add. COTD maps for example have a large player base (> 10,000 players) significantly slowing down the update process since all player records (up to 10,000 which is the Nadeo API limit) per map are checked.
+If you would like to modify the map pack or change the scoring as a more experienced Trackmania player, please feel free to create a pull request for the [maps.csv](maps.csv) file where all the maps and their points are stored or contact me on [discord](https://discord.com/channels/1062368297728884797/1152204810343424030). Please be considerate with what maps or map packs to add. COTD maps for example have a large player base (> 10,000 players) significantly slowing down the update process since all player records (up to 10,000 which is the Nadeo API limit) per map are checked.
 
 ### Removing maps
 
