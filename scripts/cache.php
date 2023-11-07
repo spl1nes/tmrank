@@ -12,7 +12,7 @@ use phpOMS\DataStorage\Database\DatabaseStatus;
 // DB connection
 $db = new SQLiteConnection([
     'db' => 'sqlite',
-    'database' => __DIR__ . '/tm_pack.sqlite',
+    'database' => __DIR__ . '/tm_pack2.sqlite',
 ]);
 
 $db->connect();
