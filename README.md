@@ -6,6 +6,14 @@ This is a small ranking project for the game Trackmania. The website [https://tm
 
 If you would like to modify the map pack or change the scoring as a more experienced Trackmania player, please feel free to create a pull request for the `maps.csv` file where all the maps and their points are stored or contact me on [discord](https://discord.com/channels/1062368297728884797/1152204810343424030). Please be considerate with what maps or map packs to add. COTD maps for example have a large player base (> 10,000 players) significantly slowing down the update process since all player records (up to 10,000 which is the Nadeo API limit) per map are checked.
 
+### Removing maps
+
+If a map should be removed from a map pack the [remove.csv](scripts/remove.csv) file needs to be expanded by the map + map pack type. And the map must be removed from the [map.csv](maps.csv) file.
+
+### Manual times
+
+If times are not available on the official trackmania leaderboards you may manually add it in the [manual.csv](scripts/manual.csv) file. Times should only be added if sufficient proof got provided that the time is legitimate.
+
 ## Api
 
 We provide a very simple and open API. All responses are with `Content-Type: application/json;` headers.
