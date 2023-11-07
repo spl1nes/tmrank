@@ -1,6 +1,6 @@
 <?php
 
-include_once __DIR__ . '/phpOMS/Autoloader.php';
+include_once __DIR__ . '/../phpOMS/Autoloader.php';
 include_once __DIR__ . '/db.php';
 
 use phpOMS\DataStorage\Database\Query\Builder;
