@@ -57,7 +57,7 @@ foreach (DriverMapper::yield()->execute() as $driver) {
               WHERE type_map_rel.type_map_rel_type = ' . $type->id . '
               GROUP BY driver.driver_uid, driver.driver_name
             ) AS RankedDrivers
-            WHERE driver_uid = \'' . $uid . '\';'
+            WHERE driver_uid = \'' . $driver->uid . '\';'
         );
         $stats = $query->execute()->fetchAll();
     
@@ -70,7 +70,7 @@ foreach (DriverMapper::yield()->execute() as $driver) {
 
             if ($driverStat->id === 0) {
                 $driverStat = new DriverStat();
-                $driverStat->uid = $uid;
+                $driverStat->uid = $driver->uid;
                 $driverStat->type = $type->id;
             }
 
