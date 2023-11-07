@@ -5,6 +5,24 @@ include_once __DIR__ . '/db.php';
 
 use phpOMS\DataStorage\Database\Query\Builder;
 
+use phpOMS\DataStorage\Database\Mapper\DataMapperFactory;
+use phpOMS\DataStorage\Database\Connection\SQLiteConnection;
+use phpOMS\DataStorage\Database\DatabaseStatus;
+
+// DB connection
+$db = new SQLiteConnection([
+    'db' => 'sqlite',
+    'database' => __DIR__ . '/tm_pack.sqlite',
+]);
+
+$db->connect();
+
+if ($db->getStatus() !== DatabaseStatus::OK) {
+    exit;
+}
+
+DataMapperFactory::db($db);
+
 $types = MapTypeMapper::getAll()->execute();
 
 foreach (DriverMapper::yield()->execute() as $driver) {
