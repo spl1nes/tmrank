@@ -28,6 +28,41 @@ class DriverMapper extends DataMapperFactory
     public const PRIMARYFIELD = 'driver_id';
 }
 
+class DriverStat
+{
+    public int $id = 0;
+    public string $uid = '';
+    public int $score = 0;
+    public int $fins = 0;
+    public int $ats = 0;
+    public int $golds = 0;
+    public int $silvers = 0;
+    public int $bronzes = 0;
+    public int $ftime = 0;
+    public int $rank = 0;
+}
+
+class NullDriverStat extends DriverStat {}
+
+class DriverStatMapper extends DataMapperFactory
+{
+    public const COLUMNS = [
+        'driverstat_id'   => ['name' => 'driverstat_id',   'type' => 'int',    'internal' => 'id'],
+        'driverstat_uid'  => ['name' => 'driverstat_uid',  'type' => 'string', 'internal' => 'uid'],
+        'driverstat_score'  => ['name' => 'driverstat_score',  'type' => 'int', 'internal' => 'score'],
+        'driverstat_fins'  => ['name' => 'driverstat_fins',  'type' => 'int', 'internal' => 'fins'],
+        'driverstat_ats'  => ['name' => 'driverstat_ats',  'type' => 'int', 'internal' => 'ats'],
+        'driverstat_golds'  => ['name' => 'driverstat_golds',  'type' => 'int', 'internal' => 'golds'],
+        'driverstat_silvers'  => ['name' => 'driverstat_silvers',  'type' => 'int', 'internal' => 'silvers'],
+        'driverstat_bronzes'  => ['name' => 'driverstat_bronzes',  'type' => 'int', 'internal' => 'bronzes'],
+        'driverstat_ftime'  => ['name' => 'driverstat_ftime',  'type' => 'int', 'internal' => 'ftime'],
+        'driverstat_rank'  => ['name' => 'driverstat_rank',  'type' => 'int', 'internal' => 'rank'],
+    ];
+
+    public const TABLE = 'driverstat';
+    public const PRIMARYFIELD = 'driverstat_id';
+}
+
 class MapType
 {
     public int $id = 0;
