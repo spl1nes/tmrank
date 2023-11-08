@@ -58,7 +58,7 @@ $types = MapTypeMapper::getAll()->execute();
 	    FROM type_map_rel
 	    WHERE type_map_rel.type_map_rel_type = ' . ((int) $current_type) . ';'
 	);
-	$count = $query->execute()->fetchAll();
+	$count[$type->id] = $query->execute()->fetchAll();
         
         $result['types'][$type->id] = [];
 
@@ -119,7 +119,7 @@ $types = MapTypeMapper::getAll()->execute();
                 <td><a href="?type=<?= $type['type_id']; ?>&page=user&uid=<?= $uid; ?>"><?= $type['type_name']; ?></a>
                 <td><?= $type['rank']; ?></td>
                 <td><?= $type['score']; ?></td>
-                <td><?= $type['fins']; ?> / (<?= $count[0][0]; ?>)$</td>
+                <td><?= $type['fins']; ?> / (<?= $count[$type['type_id']][0]; ?>)</td>
                 <td><?= $type['ats']; ?></td>
                 <td><?= $type['golds']; ?></td>
                 <td><?= $type['silvers']; ?></td>
