@@ -85,8 +85,6 @@ foreach (DriverMapper::yield()->execute() as $driver) {
             }
 
             $offset += 500;
-
-            var_dump(count($stats));
         } while (!empty($stats));
     }
 }
