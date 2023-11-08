@@ -51,7 +51,8 @@ foreach (DriverMapper::yield()->execute() as $driver) {
                 OFFSET ' . $offset . ';'
             );
             $stats = $query->execute()->fetchAll();
-        
+
+            $rank = 1 + $offset;
             foreach ($stats as $stat) {
                 if ($stat['fins'] < 1) {
                     continue;
@@ -72,7 +73,7 @@ foreach (DriverMapper::yield()->execute() as $driver) {
                 $driverStat->silvers = $stat['silvers'];
                 $driverStat->bronzes = $stat['bronzes'];
                 $driverStat->ftime = $stat['ftime'];
-                $driverStat->rank = $stat['rank'];
+                $driverStat->rank = $rank;
     
                 if ($driverStat->id === 0) {
                     DriverStatMapper::create()->execute($driverStat);
