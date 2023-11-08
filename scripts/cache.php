@@ -52,7 +52,7 @@ foreach (DriverMapper::yield()->execute() as $driver) {
                 continue;
             }
           
-            $driverStat = DriverStatMapper::get()->where('uid', $uid)->where('type', $type->id)->execute();
+            $driverStat = DriverStatMapper::get()->where('uid', $driver->uid)->where('type', $type->id)->execute();
 
             if ($driverStat->id === 0) {
                 $driverStat = new DriverStat();
