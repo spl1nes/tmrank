@@ -80,6 +80,8 @@ foreach (DriverMapper::yield()->execute() as $driver) {
                 } else {
                     DriverStatMapper::update()->execute($driverStat);
                 }
+
+                ++$rank;
             }
 
             $offset += 500;
