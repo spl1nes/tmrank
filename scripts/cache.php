@@ -44,7 +44,7 @@ foreach (DriverMapper::yield()->execute() as $driver) {
                 JOIN finish ON driver.driver_uid = finish.finish_driver
                 JOIN map ON finish.finish_map = map.map_nid
                 JOIN type_map_rel ON map.map_uid = type_map_rel.type_map_rel_map
-                WHERE type_map_rel.type_map_rel_type = ' . ((int) type->id) . '
+                WHERE type_map_rel.type_map_rel_type = ' . ((int) $type->id) . '
                 GROUP BY driver.driver_uid
                 ORDER BY score DESC, fins DESC, ats DESC, golds DESC, silvers DESC, bronzes DESC, ftime ASC
                 LIMIT 500
