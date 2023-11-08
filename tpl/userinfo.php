@@ -120,7 +120,7 @@ $count = [];
                 <td><a href="?type=<?= $type['type_id']; ?>&page=user&uid=<?= $uid; ?>"><?= $type['type_name']; ?></a>
                 <td><?= $type['rank']; ?></td>
                 <td><?= $type['score']; ?></td>
-                <td><?= $type['fins']; ?> / (<?= $count[$type['type_id']][0][0]; ?>)</td>
+                <td><?= $type['fins']; ?> / <?= $count[$type['type_id']][0][0]; ?></td>
                 <td><?= $type['ats']; ?></td>
                 <td><?= $type['golds']; ?></td>
                 <td><?= $type['silvers']; ?></td>
