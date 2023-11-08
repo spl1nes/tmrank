@@ -40,7 +40,7 @@ if ($order !== 'finish' && $order !== 'at' && $order !== 'gold' && $order !== 's
         </header>
         <main>
             <div class="floater center">
-                New drivers are added once every 24h, just finish any map in the top 10,000 of the map pack and your name will be automatically added. Existing drivers and times are updated once every 24h. Name changes are performed once every week. Help with maintaining the map packs (add/remove maps, adjust scoring, create new categories, ...) by editing the <a href="https://github.com/spl1nes/tmrank/blob/master/maps.csv">maps</a> file or contact me on <a href="https://discord.gg/dbxt62TB">discord</a>.
+                New drivers are added once every 24h, just finish any map in the top 10,000 of the map pack and your name will be automatically added. Existing drivers and times are updated once every 24h. Name changes are performed once every week. Help with maintaining the map packs (add/remove maps, adjust scoring, create new categories, ...) by editing the <a href="https://github.com/spl1nes/tmrank/blob/master/maps.csv">maps</a> file or contact me on <a href="https://discordapp.com/users/559332194435334144">discord</a>.
             </div>
             <?php include __DIR__ . '/tpl/' . $page . '.php'; ?>
         </main>
