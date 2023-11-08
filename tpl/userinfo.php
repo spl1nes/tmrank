@@ -57,7 +57,7 @@ $count = [];
 	$query->raw(
 	    'SELECT count(*)
 	    FROM type_map_rel
-	    WHERE type_map_rel.type_map_rel_type = ' . ((int) $current_type) . ';'
+	    WHERE type_map_rel.type_map_rel_type = ' . ((int) $type->id) . ';'
 	);
 	$count[$type->id] = $query->execute()->fetchAll();
         
