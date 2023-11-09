@@ -89,7 +89,7 @@ $user = DriverMapper::get()->where('uid', $uid)->execute();
                 </td>
                 <td><?= \htmlspecialchars($map['map_uid']); ?></td>
                 <td><?= $map['map_finish_score']; ?>/<?= $map['map_bronze_score']; ?>/<?= $map['map_silver_score']; ?>/<?= $map['map_gold_score']; ?>/<?= $map['map_at_score']; ?></td>
-                <td><?php if ($hours > 0) { echo \sprintf("%02d:%02d:%02ds.%03d", $hours, $minutes, $seconds, $ms); } elseif ($minutes > 0) { echo \sprintf("%02dm %02ds.%03d", $minutes, $seconds, $ms); } else { echo \sprintf("%02ds.%03d", $seconds, $ms); } ?></td>
+                <td><?php if ($hours > 0) { echo \sprintf("%02d:%02d:%02d.%03d", $hours, $minutes, $seconds, $ms); } elseif ($minutes > 0) { echo \sprintf("%02d:%02d.%03d", $minutes, $seconds, $ms); } else { echo \sprintf("%02d.%03d", $seconds, $ms); } ?></td>
             <?php endforeach; ?>
     </table>
 </div>
@@ -135,8 +135,8 @@ $user = DriverMapper::get()->where('uid', $uid)->execute();
                         <?= ($map['score'] === $map['map_finish_score'] ? '<strong>' : '') . $map['map_finish_score'] . ($map['score'] === $map['map_finish_score'] ? '</strong>' : ''); ?>/<?= ($map['score'] === $map['map_bronze_score'] ? '<strong>' : '') . $map['map_bronze_score'] . ($map['score'] === $map['map_bronze_score'] ? '</strong>' : ''); ?>/<?= ($map['score'] === $map['map_silver_score'] ? '<strong>' : '') . $map['map_silver_score'] . ($map['score'] === $map['map_silver_score'] ? '</strong>' : ''); ?>/<?= ($map['score'] === $map['map_gold_score'] ? '<strong>' : '') . $map['map_gold_score'] . ($map['score'] === $map['map_gold_score'] ? '</strong>' : ''); ?>/<?= ($map['score'] === $map['map_at_score'] ? '<strong>' : '') . $map['map_at_score'] . ($map['score'] === $map['map_at_score'] ? '</strong>' : ''); ?>
                     <?php endif; ?>
                 </td>
-                <td><?php if ($hours > 0) { echo \sprintf("%02d:%02d:%02ds.%03d", $hours, $minutes, $seconds, $ms); } elseif ($minutes > 0) { echo \sprintf("%02d:%02ds.%03d", $minutes, $seconds, $ms); } else { echo \sprintf("%02d.%03d", $seconds, $ms); } ?></td>
-                <td><?php if ($fhours > 0) { echo \sprintf("%02d:%02d:%02d.%03d", $fhours, $fminutes, $fseconds, $fms); } elseif ($fminutes > 0) { echo \sprintf("%02d:%02ds.%03d", $fminutes, $fseconds, $fms); } else { echo \sprintf("%02d.%03d", $fseconds, $fms); } ?></td>
+                <td><?php if ($hours > 0) { echo \sprintf("%02d:%02d:%02d.%03d", $hours, $minutes, $seconds, $ms); } elseif ($minutes > 0) { echo \sprintf("%02d:%02d.%03d", $minutes, $seconds, $ms); } else { echo \sprintf("%02d.%03d", $seconds, $ms); } ?></td>
+                <td><?php if ($fhours > 0) { echo \sprintf("%02d:%02d:%02d.%03d", $fhours, $fminutes, $fseconds, $fms); } elseif ($fminutes > 0) { echo \sprintf("%02d:%02d.%03d", $fminutes, $fseconds, $fms); } else { echo \sprintf("%02d.%03d", $fseconds, $fms); } ?></td>
             <?php endforeach; ?>
     </table>
 </div>
