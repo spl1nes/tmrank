@@ -89,7 +89,7 @@ $user = DriverMapper::get()->where('uid', $uid)->execute();
                 </td>
                 <td><?= \htmlspecialchars($map['map_uid']); ?></td>
                 <td><?= $map['map_finish_score']; ?>/<?= $map['map_bronze_score']; ?>/<?= $map['map_silver_score']; ?>/<?= $map['map_gold_score']; ?>/<?= $map['map_at_score']; ?></td>
-                <td><?= \sprintf("%02d:%02d:%02d.%03d", $hours, $minutes, $seconds, $ms); ?></td>
+                <td><?= \sprintf("%02dh %02dm %02ds.%03d", $hours, $minutes, $seconds, $ms); ?></td>
             <?php endforeach; ?>
     </table>
 </div>
@@ -135,8 +135,8 @@ $user = DriverMapper::get()->where('uid', $uid)->execute();
                         <?= ($map['score'] === $map['map_finish_score'] ? '<strong>' : '') . $map['map_finish_score'] . ($map['score'] === $map['map_finish_score'] ? '</strong>' : ''); ?>/<?= ($map['score'] === $map['map_bronze_score'] ? '<strong>' : '') . $map['map_bronze_score'] . ($map['score'] === $map['map_bronze_score'] ? '</strong>' : ''); ?>/<?= ($map['score'] === $map['map_silver_score'] ? '<strong>' : '') . $map['map_silver_score'] . ($map['score'] === $map['map_silver_score'] ? '</strong>' : ''); ?>/<?= ($map['score'] === $map['map_gold_score'] ? '<strong>' : '') . $map['map_gold_score'] . ($map['score'] === $map['map_gold_score'] ? '</strong>' : ''); ?>/<?= ($map['score'] === $map['map_at_score'] ? '<strong>' : '') . $map['map_at_score'] . ($map['score'] === $map['map_at_score'] ? '</strong>' : ''); ?>
                     <?php endif; ?>
                 </td>
-                <td><?= \sprintf("%02d:%02d:%02d.%03d", $hours, $minutes, $seconds, $ms); ?></td>
-                <td><?= \sprintf("%02d:%02d:%02d.%03d", $fhours, $fminutes, $fseconds, $fms); ?></td>
+                <td><?= \sprintf("%02dh %02dm %02ds.%03d", $hours, $minutes, $seconds, $ms); ?></td>
+                <td><?= \sprintf("%02dh %02dm %02ds.%03d", $fhours, $fminutes, $fseconds, $fms); ?></td>
             <?php endforeach; ?>
     </table>
 </div>
