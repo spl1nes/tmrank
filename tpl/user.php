@@ -89,7 +89,7 @@ $user = DriverMapper::get()->where('uid', $uid)->execute();
                 </td>
                 <td><?= \htmlspecialchars($map['map_uid']); ?></td>
                 <td><?= $map['map_finish_score']; ?>/<?= $map['map_bronze_score']; ?>/<?= $map['map_silver_score']; ?>/<?= $map['map_gold_score']; ?>/<?= $map['map_at_score']; ?></td>
-                <td><?= \sprintf("%02dh %02dm %02ds.%03d", $hours, $minutes, $seconds, $ms); ?></td>
+                <td><?php if ($hours > 0) { echo \sprintf("%02dh %02dm %02ds.%03d", $hours, $minutes, $seconds, $ms); } elseif ($minutes > 0) { echo \sprintf("%02dm %02ds.%03d", $minutes, $seconds, $ms); } else { echo \sprintf("%02ds.%03d", $seconds, $ms); } ?></td>
             <?php endforeach; ?>
     </table>
 </div>
