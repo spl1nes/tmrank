@@ -98,8 +98,8 @@ foreach ($temps as $temp) {
                 </td>
                 <td><?= \htmlspecialchars($map['map_uid']); ?></td>
                 <td><?= $map['map_finish_score']; ?>/<?= $map['map_bronze_score']; ?>/<?= $map['map_silver_score']; ?>/<?= $map['map_gold_score']; ?>/<?= $map['map_at_score']; ?></td>
-                <td><?= \sprintf("%02dh %02dm %02ds.%03d", $hours, $minutes, $seconds, $ms); ?></td>
-                <td><?= \sprintf("%02dh %02dm %02ds.%03d", $whours, $wminutes, $wseconds, $wms); ?></td>
+                <td><?php if ($hours > 0) { echo \sprintf("%02d:%02d:%02d.%03d", $hours, $minutes, $seconds, $ms); } elseif ($minutes > 0) { echo \sprintf("%02d:%02d.%03d", $minutes, $seconds, $ms); } else { echo \sprintf("%02d.%03d", $seconds, $ms); } ?></td>
+                <td><?php if ($whours > 0) { echo \sprintf("%02d:%02d:%02d.%03d", $whours, $wminutes, $wseconds, $wms); } elseif ($wminutes > 0) { echo \sprintf("%02d:%02d.%03d", $wminutes, $wseconds, $wms); } else { echo \sprintf("%02d.%03d", $wseconds, $wms); } ?></td>
                 <td><?= \htmlspecialchars($wrs[$map['map_uid']]['driver_name']); ?></td>
                 <td><?= $map['fins']; ?>
             <?php endforeach; ?>
