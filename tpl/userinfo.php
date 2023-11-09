@@ -125,7 +125,7 @@ $count = [];
                 <td><?= $type['golds']; ?></td>
                 <td><?= $type['silvers']; ?></td>
                 <td><?= $type['bronzes']; ?></td>
-                <td><?= \sprintf("%02dd %02dh %02dm %02ds", $days, $hours, $minutes, $seconds); ?></td>
+		<td><?php if ($days > 0) { echo \sprintf("%02dd %02dh %02dm %02ds", $days, $hours, $minutes, $seconds); } elseif ($hours > 0) { echo \sprintf("%02dh %02dm %02ds", $hours, $minutes, $seconds); } else { echo \sprintf("%02dm %02ds", $minutes, $seconds); } ?></td>
             <?php endforeach; ?>
         </tbody>
     </table>
