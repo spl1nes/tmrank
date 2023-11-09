@@ -109,7 +109,7 @@ $scores = $query->execute()->fetchAll();
                 <td><?= $score[5]; ?></td>
                 <td><?= $score[6]; ?></td>
                 <td><?= $score[7]; ?></td>
-                <td><?= \sprintf("%02dd %02dh %02dm %02ds", $days, $hours, $minutes, $seconds); ?></td>
+                <td><?php if ($days > 0) { echo \sprintf("%02dd %02dh %02dm %02ds", $days, $hours, $minutes, $seconds); } elseif ($hours > 0) { echo \sprintf("%02dh %02dm %02ds", $hours, $minutes, $seconds); } else { echo \sprintf("%02dm %02ds", $minutes, $seconds); } ?></td>
             </tr>
             <?php endforeach; ?>
         </tbody>
