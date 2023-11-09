@@ -135,7 +135,7 @@ $user = DriverMapper::get()->where('uid', $uid)->execute();
                         <?= ($map['score'] === $map['map_finish_score'] ? '<strong>' : '') . $map['map_finish_score'] . ($map['score'] === $map['map_finish_score'] ? '</strong>' : ''); ?>/<?= ($map['score'] === $map['map_bronze_score'] ? '<strong>' : '') . $map['map_bronze_score'] . ($map['score'] === $map['map_bronze_score'] ? '</strong>' : ''); ?>/<?= ($map['score'] === $map['map_silver_score'] ? '<strong>' : '') . $map['map_silver_score'] . ($map['score'] === $map['map_silver_score'] ? '</strong>' : ''); ?>/<?= ($map['score'] === $map['map_gold_score'] ? '<strong>' : '') . $map['map_gold_score'] . ($map['score'] === $map['map_gold_score'] ? '</strong>' : ''); ?>/<?= ($map['score'] === $map['map_at_score'] ? '<strong>' : '') . $map['map_at_score'] . ($map['score'] === $map['map_at_score'] ? '</strong>' : ''); ?>
                     <?php endif; ?>
                 </td>
-                <td><?= if ($hours > 0) { \sprintf("%02dh %02dm %02ds.%03d", $hours, $minutes, $seconds, $ms); } elseif ($minutes > 0) { \sprintf("%02dm %02ds.%03d", $minutes, $seconds, $ms); } else { \sprintf("%02ds.%03d", $minutes, $seconds, $ms); } ?></td>
+                <td><?php if ($hours > 0) { echo \sprintf("%02dh %02dm %02ds.%03d", $hours, $minutes, $seconds, $ms); } elseif ($minutes > 0) { echo \sprintf("%02dm %02ds.%03d", $minutes, $seconds, $ms); } else { echo \sprintf("%02ds.%03d", $minutes, $seconds, $ms); } ?></td>
                 <td><?= \sprintf("%02dh %02dm %02ds.%03d", $fhours, $fminutes, $fseconds, $fms); ?></td>
             <?php endforeach; ?>
     </table>
