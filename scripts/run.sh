@@ -1,6 +1,6 @@
 #!/bin/bash
 
-echo date
+date
 
 echo "#################################################"
 echo "# Git"
@@ -32,4 +32,4 @@ echo "# Names"
 echo "#################################################"
 php /var/www/html/tmrank/scripts/names.php
 
-echo date
+date
